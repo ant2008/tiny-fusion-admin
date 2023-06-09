@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="init push">
+      <change afterPath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdFormTest.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/types/wsVxeTable.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsForm/WsForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsForm/WsForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsMdForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsMdForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/utils/WsDictHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/utils/WsDictHelper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrderData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrderData.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,24 +43,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.stylelint": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/prettier",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -60,11 +72,26 @@
       <workItem from="1680408546400" duration="91000" />
       <workItem from="1680408644129" duration="22010000" />
       <workItem from="1680575515283" duration="30081000" />
-      <workItem from="1681201561456" duration="87411000" />
+      <workItem from="1681201561456" duration="212690000" />
+      <workItem from="1684484980087" duration="815000" />
+      <workItem from="1684910377157" duration="21000" />
     </task>
+    <task id="LOCAL-00001" summary="init push">
+      <created>1682065091219</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682065091219</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="init push" />
+    <option name="LAST_COMMIT_MESSAGE" value="init push" />
   </component>
 </project>

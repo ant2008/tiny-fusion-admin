@@ -5,7 +5,6 @@ import { assign, get } from 'lodash-es'
 import { TableExpose } from '@/components/Table'
 // import { ElMessage, ElMessageBox } from 'element-plus'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
-import VXETable from 'vxe-table'
 import { TableSetPropsType } from '@/types/table'
 
 // const { t } = useI18n()
@@ -109,9 +108,9 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
   const tableRef = ref<typeof WsTable & TableExpose>()
 
   // ElTable实例
-  const elTableRef = ref<ComponentRef<typeof VXETable>>()
+  const elTableRef = ref<ComponentRef<typeof WsTable>>()
 
-  const register = (ref: typeof WsTable & TableExpose, elRef: ComponentRef<typeof VXETable>) => {
+  const register = (ref: typeof WsTable & TableExpose, elRef: ComponentRef<typeof WsTable>) => {
     tableRef.value = ref
     elTableRef.value = elRef
   }
@@ -153,6 +152,13 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
     getList: () => Promise<void>
     //单纯设置datas
     setListDatas: (datas: []) => void
+    //设置vxetable行编辑
+    setTableRowEdit: (row: any) => void
+    cancelTableRowEdit: (row: any) => void
+    insertTableRow: (newRecord: any, rowNumber: any) => void
+    delTableSelectRow: () => void
+    getModRecords: () => Promise<WsTableRecordSet>
+    getTableDatas: () => Promise<WsTableDatas>
   } = {
     setProps: async (props: TableProps = {}) => {
       const table = await getTable()
@@ -268,6 +274,26 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
       tableObject.loading = true
       tableObject.tableList = datas
       tableObject.loading = false
+    },
+    setTableRowEdit: async (row: any) => {
+      //debug
+      console.log('settablerowedit', row, unref(tableRef))
+      unref(tableRef)?.setRowEdit(row)
+    },
+    cancelTableRowEdit: async (row) => {
+      unref(tableRef)?.cancelRowEdit(row)
+    },
+    insertTableRow: async (newRecord: any, rowNumber: any) => {
+      unref(tableRef)?.insertRow(newRecord, rowNumber)
+    },
+    delTableSelectRow: async () => {
+      unref(tableRef)?.delSelectRow()
+    },
+    getModRecords: async (): Promise<WsTableRecordSet> => {
+      return unref(tableRef)?.getModRecords()
+    },
+    getTableDatas: async (): Promise<WsTableDatas> => {
+      return unref(tableRef)?.getTableDatas()
     }
   }
 

@@ -6,7 +6,6 @@ const wsStore = useWsStore()
 export const getSyscodeSelect = (key): SelectOptionType[] => {
   let selectArr: SelectOptionType[] = []
   const codeArr: WsDictType[] = wsStore.sysCodeDicts[key]
-
   if (codeArr == null || codeArr.length <= 0) {
     selectArr.push({
       label: '',
@@ -16,7 +15,7 @@ export const getSyscodeSelect = (key): SelectOptionType[] => {
     selectArr = codeArr.map<SelectOptionType>((val) => {
       return Object.assign({
         label: val.name,
-        value: val.value
+        value: String(val.value)
       })
     })
   }
@@ -24,32 +23,26 @@ export const getSyscodeSelect = (key): SelectOptionType[] => {
   return selectArr
 }
 
-// /**
-//  * 获取数字类型选择框。
-//  *
-//  * @param vm
-//  * @param key
-//  * @returns {Array|number}
-//  */
-// export const getIntSyscodeSelect = function (vm, key) {
-//     const syscodeSelectArr = []
-//     const syscodeArr = vm.$store.getters.syscode(key)
-//     if (syscodeArr == null || syscodeArr.length <= 0) {
-//         return syscodeSelectArr.push({
-//             label: '',
-//             value: ''
-//         })
-//     }
-//
-//     for (const it of syscodeArr) {
-//         syscodeSelectArr.push({
-//             label: it.name,
-//             value: parseInt(it.value)
-//         })
-//     }
-//
-//     return syscodeSelectArr
-// }
+export const getSyscodeSelectInt = (key): SelectOptionType[] => {
+  let selectArr: SelectOptionType[] = []
+  const codeArr: WsDictType[] = wsStore.sysCodeDicts[key]
+
+  if (codeArr == null || codeArr.length <= 0) {
+    selectArr.push({
+      label: '',
+      value: undefined
+    })
+  } else {
+    selectArr = codeArr.map<SelectOptionType>((val) => {
+      return Object.assign({
+        label: val.name,
+        value: parseInt(val.value)
+      })
+    })
+  }
+
+  return selectArr
+}
 
 export const getRoleDictsSelect = (): SelectOptionType[] => {
   let selectArr: SelectOptionType[] = []
@@ -74,7 +67,7 @@ export const getRoleDictsSelect = (): SelectOptionType[] => {
 
 export const getUserDictsSelect = (): SelectOptionType[] => {
   let selectArr: SelectOptionType[] = []
-  const userDictsArr: WsDictType[] = wsStore.roleDicts
+  const userDictsArr: WsDictType[] = wsStore.userDicts
 
   if (userDictsArr == null || userDictsArr.length <= 0) {
     selectArr.push({

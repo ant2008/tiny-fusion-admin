@@ -65,13 +65,13 @@ export default defineComponent({
     //form操作记录。
     const formOpera = ref(FormOpera.INIT)
 
+    let addPageVisibleFlag = false
+
     const doSave = () => {
       methods.getFormData().then((res) => {
         emit('evSave', unref(res), unref(formOpera))
       })
     }
-
-    let addPageVisibleFlag = false
 
     const doExit = () => {
       emit('evExit', addPageVisibleFlag)
@@ -91,7 +91,6 @@ export default defineComponent({
       }
     })
 
-    //暂时不使用 2022.05.23
     //抛出相应的字段
     useEmitt({
       name: 'ev-item-change',

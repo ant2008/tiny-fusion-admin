@@ -94,8 +94,41 @@ export default defineComponent({
 
     const selections = ref<Recordable[]>([])
 
+    const setRowEdit = (row: any) => {
+      //debug
+      console.log('wstable editrow', row, unref(elTableRef))
+      unref(elTableRef).setEditRow(row)
+    }
+
+    const cancelRowEdit = (row: any) => {
+      unref(elTableRef)
+        .clearEdit()
+        .then(() => {
+          // 还原行数据
+          unref(elTableRef).revertData(row)
+        })
+    }
+
+    const insertRow = (newRecord: any, rowNumber: any) => {
+      unref(elTableRef).insertAt(newRecord, rowNumber)
+    }
+
+    const delSelectRow = () => {
+      unref(elTableRef).removeCheckboxRow()
+    }
+
     const selectionChange = (selection: Recordable[]) => {
       selections.value = selection
+    }
+
+    const getModRecords = (): WsTableRecordSet => {
+      //debug
+      console.log('tableDatas', unref(elTableRef).getTableData())
+      return unref(elTableRef).getRecordset()
+    }
+
+    const getTableDatas = (): WsTableDatas => {
+      return unref(elTableRef).getTableData()
     }
 
     const currentChange = (
@@ -109,7 +142,6 @@ export default defineComponent({
       $columnIndex,
       $event
     ) => {
-      alert('test')
       emit(
         'current-change',
         newValue,
@@ -127,7 +159,13 @@ export default defineComponent({
     expose({
       setProps,
       setColumn,
-      selections
+      selections,
+      setRowEdit,
+      cancelRowEdit,
+      insertRow,
+      delSelectRow,
+      getModRecords,
+      getTableDatas
     })
 
     const pagination = computed(() => {
@@ -314,7 +352,10 @@ export default defineComponent({
                         v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
                         data.row[v.field],
                   // @ts-ignore
-                  header: getSlot(slots, `${v.field}-header`)
+                  header: () => getSlot(slots, `${v.field}-header`) || v.label,
+                  //增加对edit的支持
+                  edit: (data: TableSlotDefault) =>
+                    getSlot(slots, v.field + '-edit', data) || data.row[v.field]
                 }}
               </vxe-column>
             )

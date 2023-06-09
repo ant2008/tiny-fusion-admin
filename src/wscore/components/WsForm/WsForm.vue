@@ -87,6 +87,8 @@ export default defineComponent({
     // 对表单赋值
     const setValues = (data: Recordable = {}) => {
       formModel.value = Object.assign(unref(formModel), data)
+      //debug
+      console.log('test form', formModel)
     }
 
     const setProps = (props: FormProps = {}) => {

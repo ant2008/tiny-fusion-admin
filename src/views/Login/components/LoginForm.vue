@@ -272,7 +272,7 @@ const buildRouterMenus = async (userId: string) => {
     //debug
     console.log('wsRootRouterMap', wsRootRouterMap)
 
-    //加入首页和工作台（临时处理模式)
+    //加入首页和工作台(临时处理模式)
     // wsRootRouterMap.forEach((value, index, arr) =>{
     //   routers.unshift({
     //     name:

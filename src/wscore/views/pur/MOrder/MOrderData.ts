@@ -14,6 +14,7 @@ import { FormSchema } from '@/types/form'
 import {
   getDeptDictsSelect,
   getSyscodeSelect,
+  getSyscodeSelectInt,
   getUserDictsSelect
 } from '@/wscore/utils/WsDictHelper'
 
@@ -21,8 +22,8 @@ const { t } = useI18n()
 
 const { emitter } = useEmitt()
 
-const orderType = getSyscodeSelect('P01')
-const stateOpts = getSyscodeSelect('S04')
+const orderType = getSyscodeSelect('A06')
+const stateOpts = getSyscodeSelectInt('S04')
 const userOpts = getUserDictsSelect()
 const depotOpts = getDeptDictsSelect()
 const payTypeOpts = getSyscodeSelect('221')
@@ -238,7 +239,7 @@ export const editSchema: FormSchema[] = [
     },
     formItemProps: {
       //required: true,
-      rules: [{ type: 'string', required: true, message: '编码不能为空!' }]
+      rules: [{ type: 'number', required: true, message: '编码不能为空!' }]
     }
   },
   {
@@ -392,6 +393,7 @@ export const editSchema: FormSchema[] = [
       span: 12
     },
     componentProps: {
+      options: userOpts,
       readonly: true,
       disabled: true,
       style: {
@@ -413,6 +415,8 @@ export const editSchema: FormSchema[] = [
   }
 ]
 
+export const initObj = {}
+
 //定义明细表格字段
 export const detailColumns = reactive<TableColumn[]>([
   {
@@ -423,8 +427,8 @@ export const detailColumns = reactive<TableColumn[]>([
   {
     field: 'itemId',
     label: t('wsModule.itemId'),
-    type: 'WsProductInput',
-    minWidth: 120
+    minWidth: 120,
+    editRender: { name: '' }
     // formatter: (cellValue) => {
     //   return renderSysCodeDict(unref(cellValue).state, 'S04')
     // }
@@ -452,7 +456,8 @@ export const detailColumns = reactive<TableColumn[]>([
   {
     field: 'orderQty',
     label: t('wsModule.orderQty'),
-    minWidth: 120
+    minWidth: 120,
+    editRender: { name: '' }
   },
   {
     field: 'itemUnit',
@@ -482,4 +487,10 @@ export const detailColumns = reactive<TableColumn[]>([
     label: t('wsModule.purAmt'),
     minWidth: 120
   }
+  // {
+  //   field: 'action',
+  //   minWidth: 160,
+  //   fixed: 'right',
+  //   label: t('tableDemo.action')
+  // }
 ])

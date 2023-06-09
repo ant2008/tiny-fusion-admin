@@ -52,7 +52,7 @@ export const useWsMdForm = (funcNo: string) => {
     setFormReadOnly: (readOnlyFlag: boolean) => void
     getFormOpera: () => string
     setFormOpera: (formOp: string) => void
-    getDetailTableDatas: (idx: string) => Promise<Recordable>
+    getMdTableDatas: (idx: string) => Promise<Recordable>
   } = {
     setProps: async (props: FormProps = {}) => {
       const form = await getForm()
@@ -158,13 +158,14 @@ export const useWsMdForm = (funcNo: string) => {
       //const formDataModel = await mdFormMethods.getFormData()
       //debug
       console.log('formData', formData)
-      await mdFormMethods.getDetailTableDatas(formData?.idx)
+      await mdFormMethods.getMdTableDatas(formData?.idx)
     },
     viewForm: async (formData: Recordable) => {
       await mdFormMethods.showMdForm()
       await mdFormMethods.setFormReadOnly(true)
       await mdFormMethods.setValues(formData)
       await mdFormMethods.setFormOpera(FormOpera.VIEW)
+      await mdFormMethods.getMdTableDatas(formData?.idx)
     },
     setFormReadOnly: async (readOnlyFlag: boolean) => {
       const form = await getForm()
@@ -178,9 +179,9 @@ export const useWsMdForm = (funcNo: string) => {
       form?.exposed.setFormOpera(formOp)
       formOpera.value = formOp
     },
-    getDetailTableDatas: async (idx: string) => {
+    getMdTableDatas: async (idx: string) => {
       const form = await getForm()
-      return form?.exposed.getDetailTableDatas(funcNo, idx)
+      return form?.exposed.getMdTableDatas(funcNo, idx)
     }
   }
 
