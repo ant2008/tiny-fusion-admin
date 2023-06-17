@@ -19,11 +19,13 @@ import { WsResultObj } from '@/wscore/types/wsform'
 import { TbProductDto } from '@/wscore/views/met/MGoods/MGoodsType'
 import { MVendorPageQuery } from '@/wscore/api/met/mvendor/mvendor'
 import { useI18n } from '@/hooks/web/useI18n'
-import { computed, defineComponent, getCurrentInstance, ref, unref } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, ref, unref } from 'vue'
 import { MOrderPageQuery } from '@/wscore/api/pur/MOrderApi'
 import { ElButton, ElInput } from 'element-plus'
 import WsMdForm from '@/wscore/components/WsMdForm/WsMdForm.vue'
 import { useWsMdForm } from '@/wscore/hook/useWsMdForm'
+import WVxeProductInput from '@/wscore/vxecomponents/WVxeProductInput/WVxeProductInput.vue'
+import WsProductInput from '@/wscore/components/WsProductInput/WsProductInput.vue'
 
 const { t } = useI18n()
 
@@ -99,9 +101,48 @@ const doMdFormExit = (formVisible, formOper) => {
 }
 
 const doMdFormCommit = (masterData, detailData, formOper) => {
-  editFormShow.value = false
   //debug
   console.log('commit', masterData, detailData, formOper)
+  mdFormMethods.saveCommit(masterData, detailData, formOper).then((res) => {
+    editFormShow.value = false
+    nextTick(() => {
+      methods.getList()
+    })
+  })
+}
+
+//保存后事件,可以用来刷新主表数据。
+
+//====md detail item
+const doItemReturn = (itemName, itemValue, retData) => {
+  //debug
+  console.log('detail item return', itemName, itemValue, retData)
+  if (itemName == 'itemId') {
+    mdFormMethods.setDetailTableEditRowData('itemName', retData['itemName'])
+    mdFormMethods.setDetailTableEditRowData('itemSubno', retData['itemSubno'])
+    mdFormMethods.setDetailTableEditRowData('itemSpec', retData['itemSpec'])
+    mdFormMethods.setDetailTableEditRowData('orderQty', 1)
+    mdFormMethods.setDetailTableEditRowData('itemUnit', retData['itemUnit'])
+    mdFormMethods.setDetailTableEditRowData('salePrice', retData['salePrice'])
+    mdFormMethods.setDetailTableEditRowData('purPrice', retData['purPrice'])
+    mdFormMethods.setDetailTableEditRowData('saleAmt', retData['salePrice'])
+    mdFormMethods.setDetailTableEditRowData('purAmt', retData['purPrice'])
+  }
+}
+
+const doOrderQty = (val) => {
+  if (val !== null) {
+    //获取当前计算量
+    mdFormMethods.getDetailTableEditRowData().then((res) => {
+      //debug
+      console.log('res', res)
+      //debug
+      console.log('item change', val, unref(res))
+      //进价金额和售价金额
+      mdFormMethods.setDetailTableEditRowData('saleAmt', Number(res.salePrice * val).toFixed(2))
+      mdFormMethods.setDetailTableEditRowData('purAmt', Number(res.purPrice * val).toFixed(2))
+    })
+  }
 }
 </script>
 
@@ -153,10 +194,10 @@ const doMdFormCommit = (masterData, detailData, formOper) => {
     <!--      <ElButton @click="doUeDetailEdit(row)" text type="primary">编辑</ElButton>-->
     <!--    </template>-->
     <template #itemId-edit="{ row }">
-      <ElInput v-model="row.itemId" />
+      <WsProductInput v-model="row.itemId" @ev-item-return="doItemReturn" />
     </template>
     <template #orderQty-edit="{ row }">
-      <ElInput v-model="row.orderQty" />
+      <ElInput v-model="row.orderQty" @change="doOrderQty" />
     </template>
     <!--    <template #slt_detailTable="{ dataList }">-->
     <!--      <WsTable-->

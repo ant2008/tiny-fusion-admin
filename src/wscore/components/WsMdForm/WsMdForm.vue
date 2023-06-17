@@ -150,6 +150,15 @@ export default defineComponent({
       return await detailTableMethods.getTableDatas()
     }
 
+    const setDetailTableEditRowData = async (name: string, value: any): Promise<any> => {
+      //返回新数据。
+      return await detailTableMethods.setEditRowData(name, value)
+    }
+
+    const getDetailTableEditRowData = async (): Promise<any> => {
+      return await detailTableMethods.getEditRowData()
+    }
+
     //===========当前使用逻辑处理函数========================
     //处理vxetalbe自带的_X_ROW_KEY元素
     const handleVxetableArrays = (arrDatas: any[]) => {
@@ -168,12 +177,28 @@ export default defineComponent({
       return arrDatas
     }
 
+    //处理master表中存在的_X_ROW_KEY字段
+    const handleMasterDataVxeRowKey = (masterData: any) => {
+      if (masterData !== null && typeof masterData !== 'undefined') {
+        if (masterData.hasOwnProperty('_X_ROW_KEY')) {
+          Reflect.deleteProperty(masterData, '_X_ROW_KEY')
+        }
+      }
+
+      return masterData
+    }
+
     const doSave = () => {
       getFormData().then((res) => {
         getDetailTableDatas().then((res2) => {
-          emit('evSave', unref(res), handleVxetableArrays(unref(res2).fullData), unref(formOpera))
-          formVisible.value = false
-          formOpera.value = 'init'
+          emit(
+            'evSave',
+            handleMasterDataVxeRowKey(unref(res)),
+            handleVxetableArrays(unref(res2).fullData),
+            unref(formOpera)
+          )
+          // formVisible.value = false
+          // formOpera.value = 'init'
         })
       })
     }
@@ -198,7 +223,9 @@ export default defineComponent({
       getFormData,
       getMdTableDatas,
       getDetailTableModDatas,
-      getDetailTableDatas
+      getDetailTableDatas,
+      setDetailTableEditRowData,
+      getDetailTableEditRowData
     })
     //====================组件展现部分==========================
     const renderVxeToolbar = () => {

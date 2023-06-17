@@ -27,3 +27,8 @@ export type GridDetailRequest = {
 export type GridDetailRequestParam = {
   aIdx: string
 }
+
+export type MdPostRequestParam = {
+  aMasterJson: string
+  aDetailJson: string
+}

@@ -4,6 +4,7 @@ import {
   CommPostRequest,
   GridDetailRequest,
   GridDetailRequestParam,
+  MdPostRequestParam,
   PageRequest,
   QuickQueryRequest
 } from '@/wscore/api/base/basetype'
@@ -90,6 +91,28 @@ export const getGridDetailApi = (gridDetailRequest: GridDetailRequest) => {
   return getUseToken({
     url: sUrl,
     params: paramRequest
+  })
+}
+
+//提交新增保存
+export const MdAddPost = async (funcNo: string, mdPostRequest: MdPostRequestParam) => {
+  const sUrl = funcNo + '/CreatePost'
+  return postUseToken({
+    url: sUrl,
+    method: 'post',
+    headersType: 'application/x-www-form-urlencoded',
+    data: mdPostRequest
+  })
+}
+
+//提交修改保存
+export const MdModPost = async (funcNo: string, mdPostRequest: MdPostRequestParam) => {
+  const sUrl = funcNo + '/EditPost'
+  return postUseToken({
+    url: sUrl,
+    method: 'post',
+    headersType: 'application/x-www-form-urlencoded',
+    data: mdPostRequest
   })
 }
 

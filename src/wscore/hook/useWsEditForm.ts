@@ -120,6 +120,8 @@ export const useWsEditForm = (props?: WsEditFormProp) => {
             await ElMessageBox.alert('保存错误:' + res['msg'], '提示')
           } else {
             await ElMessageBox.alert('保存成功' + res['msg'], '提示')
+            await editFormMethods.hideEditForm()
+            await editFormMethods.setFormOpera(FormOpera.INIT)
           }
         } else if (formOp === 'MOD') {
           const res2 = await modPost(paramRequest)
@@ -127,6 +129,8 @@ export const useWsEditForm = (props?: WsEditFormProp) => {
             await ElMessageBox.alert('保存错误:' + res2['msg'], '提示')
           } else {
             await ElMessageBox.alert('保存成功' + res2['msg'], '提示')
+            await editFormMethods.hideEditForm()
+            await editFormMethods.setFormOpera(FormOpera.INIT)
           }
         }
       }

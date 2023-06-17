@@ -159,6 +159,9 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
     delTableSelectRow: () => void
     getModRecords: () => Promise<WsTableRecordSet>
     getTableDatas: () => Promise<WsTableDatas>
+    setEditRowData: (name: string, value: any) => Promise<any>
+    getEditRowData: () => Promise<any>
+    reloadRowData: (rows: any | any[]) => Promise<any>
   } = {
     setProps: async (props: TableProps = {}) => {
       const table = await getTable()
@@ -294,6 +297,17 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
     },
     getTableDatas: async (): Promise<WsTableDatas> => {
       return unref(tableRef)?.getTableDatas()
+    },
+    setEditRowData: async (name: string, value: any): Promise<any> => {
+      //debug
+      console.log('test', unref(tableRef))
+      return unref(tableRef)?.setEditRowData(name, value)
+    },
+    getEditRowData: async (): Promise<any> => {
+      return unref(tableRef)?.getEditRowData()
+    },
+    reloadRowData: async (rows: any | any[]): Promise<any> => {
+      return unref(tableRef)?.reloadRowData(rows)
     }
   }
 

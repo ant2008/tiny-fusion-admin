@@ -4,20 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="init push">
-      <change afterPath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdFormTest.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wscore/types/wsVxeTable.d.ts" afterDir="false" />
+    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model.">
+      <change afterPath="$PROJECT_DIR$/src/wscore/vxecomponents/WVxeProductInput/WVxeProductInput.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/api/base/base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/base/base.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/api/base/basetype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/base/basetype.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsForm/WsForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsForm/WsForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsProductInput/WsProductInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsProductInput/WsProductInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsMdForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsMdForm.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/utils/WsDictHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/utils/WsDictHelper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/modal/QueryModal/QueryModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/modal/QueryModal/QueryModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrderData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrderData.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +75,8 @@
       <workItem from="1681201561456" duration="212690000" />
       <workItem from="1684484980087" duration="815000" />
       <workItem from="1684910377157" duration="21000" />
+      <workItem from="1686303223067" duration="950000" />
+      <workItem from="1686364716973" duration="41163000" />
     </task>
     <task id="LOCAL-00001" summary="init push">
       <created>1682065091219</created>
@@ -83,15 +85,34 @@
       <option name="project" value="LOCAL" />
       <updated>1682065091219</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model.">
+      <created>1686303566466</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686303566466</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="init push" />
-    <option name="LAST_COMMIT_MESSAGE" value="init push" />
+    <MESSAGE value="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model." />
   </component>
 </project>

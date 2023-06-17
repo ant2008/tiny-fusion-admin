@@ -110,7 +110,11 @@ export default defineComponent({
     }
 
     const insertRow = (newRecord: any, rowNumber: any) => {
-      unref(elTableRef).insertAt(newRecord, rowNumber)
+      unref(elTableRef)
+        .insertAt(newRecord, rowNumber)
+        .then((res) => {
+          unref(elTableRef).setEditRow(res.row)
+        })
     }
 
     const delSelectRow = () => {
@@ -129,6 +133,22 @@ export default defineComponent({
 
     const getTableDatas = (): WsTableDatas => {
       return unref(elTableRef).getTableData()
+    }
+
+    //设置vxeTable中每个列数据
+    const setEditRowData = (name: string, value: any): any => {
+      const rowObj = unref(elTableRef)?.getEditRecord()
+      rowObj.row[name] = value
+      return rowObj
+    }
+
+    //获取正在编辑的行数据。
+    const getEditRowData = (): any => {
+      return unref(elTableRef)?.getEditRecord().row
+    }
+    //刷新vxetable的行(暂时不使用)
+    const reloadRowData = (row: any | any[]): any => {
+      return unref(elTableRef)?.reloadRow(row)
     }
 
     const currentChange = (
@@ -165,7 +185,10 @@ export default defineComponent({
       insertRow,
       delSelectRow,
       getModRecords,
-      getTableDatas
+      getTableDatas,
+      setEditRowData,
+      getEditRowData,
+      reloadRowData
     })
 
     const pagination = computed(() => {

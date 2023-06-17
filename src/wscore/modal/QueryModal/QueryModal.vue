@@ -9,6 +9,7 @@
     :append-to-body="true"
     :destroy-on-close="true"
     :draggable="true"
+    class="vxe-table--ignore-clear"
   >
     <template #footer>
       <ElButton size="default" @click="doSearchCancel">取消</ElButton>

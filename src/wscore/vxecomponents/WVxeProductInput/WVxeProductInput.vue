@@ -1,5 +1,5 @@
 <template>
-  <ElInput
+  <vxe-input
     :readonly="readonly"
     v-model="inputValue"
     :input-style="style"
@@ -15,7 +15,7 @@
         </template>
       </ElButton>
     </template>
-  </ElInput>
+  </vxe-input>
   <ProductModal
     @query-modal-register="queryModalRegister"
     @ev-return="doReturn"
@@ -31,8 +31,8 @@ import ProductModal from '@/wscore/modal/ProductModal/ProductModal.vue'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import { Search } from '@element-plus/icons-vue'
 export default defineComponent({
-  name: 'WsProductInput',
-  components: { Search, ProductModal, ElInput, ElButton, ElIcon },
+  name: 'WVxeProductInput',
+  components: { Search, ProductModal, ElButton, ElIcon },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),
@@ -88,12 +88,15 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (value) => {
+        // if (value && value !== '') {
+        //   inputValue.value = value
+        // } else {
+        //   inputValue.value = ''
+        // }
         nextTick(() => {
-          if (value && value !== '') {
-            inputValue.value = value
-          } else {
-            inputValue.value = ''
-          }
+          //debug
+          console.log('watch-modelValue', value)
+          inputValue.value = value
         })
       },
       { immediate: true, deep: true }

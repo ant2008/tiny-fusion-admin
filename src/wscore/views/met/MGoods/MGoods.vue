@@ -34,7 +34,7 @@
     :edit-schema="editSchema"
     @ev-exit="doEvExit"
     @register="editFormRegister"
-    @ev-save="saveCommit"
+    @ev-save="doEvSave"
     @ev-item-return="doItemReturn"
     @ev-item-change="doItemChange"
   />
@@ -120,6 +120,13 @@ export default defineComponent({
       editFormMethods.hideEditForm()
     }
 
+    const doEvSave = (formData: Recordable, formOp: string) => {
+      saveCommit(formData, formOp).then(() => {
+        editFormShow.value = false
+        methods.getList()
+      })
+    }
+
     const doUeAdd = (addVisible) => {
       editFormShow.value = addVisible
       editFormMethods.addForm()
@@ -201,6 +208,7 @@ export default defineComponent({
       editFormShow,
       editFormRegister,
       saveCommit,
+      doEvSave,
       doItemReturn,
       doItemChange
     }

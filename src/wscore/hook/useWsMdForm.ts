@@ -1,10 +1,10 @@
 import { nextTick, ref, unref } from 'vue'
 import { WsFormExpose } from '@/wscore/components/WsEditForm/WsEditFormType'
-import { addPost, FormOpera, initAdd, modPost } from '@/wscore/api/base/base'
+import { FormOpera, initAdd, MdAddPost, MdModPost } from '@/wscore/api/base/base'
 import WsMdForm from '@/wscore/components/WsMdForm/WsMdForm.vue'
 import { FormSchema, FormSetPropsType } from '@/types/form'
 import { FormProps } from '@/components/Form/src/types'
-import { CommitPostRequest } from '@/wscore/api/base/basetype'
+import { MdPostRequestParam } from '@/wscore/api/base/basetype'
 import { ElMessageBox } from 'element-plus'
 
 export const useWsMdForm = (funcNo: string) => {
@@ -42,7 +42,7 @@ export const useWsMdForm = (funcNo: string) => {
     addSchema: (formSchema: FormSchema, index?: number) => void
     delSchema: (field: string) => void
     getFormSchemaDatas: <T = Recordable | undefined>() => Promise<T>
-    saveCommit: (formData: Recordable, formOp: string) => Promise<Recordable>
+    saveCommit: (formData: Recordable, detailDatas: any[], formOp: string) => Promise<Recordable>
     initAdd: () => void
     showMdForm: () => void
     hideMdForm: () => void
@@ -53,6 +53,8 @@ export const useWsMdForm = (funcNo: string) => {
     getFormOpera: () => string
     setFormOpera: (formOp: string) => void
     getMdTableDatas: (idx: string) => Promise<Recordable>
+    setDetailTableEditRowData: (name: string, value: any) => Promise<any>
+    getDetailTableEditRowData: () => any
   } = {
     setProps: async (props: FormProps = {}) => {
       const form = await getForm()
@@ -102,27 +104,36 @@ export const useWsMdForm = (funcNo: string) => {
       const form = await getForm()
       return form?.exposed.getFormSchemaDatas() as T
     },
-    //todo:待重新处理逻辑
-    saveCommit: async (formData: Recordable, formOp: string): Promise<Recordable> => {
-      if (formData !== undefined) {
-        const paramRequest: CommitPostRequest = {
-          formData: formData,
-          aFuncNo: funcNo === undefined ? '' : funcNo
+    //根据操作类型进行提交数据库操作。
+    saveCommit: async (
+      formData: Recordable,
+      detailDatas: any[],
+      formOp: string
+    ): Promise<Recordable> => {
+      if (formData !== undefined && detailDatas.length > 0) {
+        //先转化为JSON
+        const paramRequest: MdPostRequestParam = {
+          aMasterJson: JSON.stringify(formData),
+          aDetailJson: JSON.stringify(detailDatas)
         }
 
-        if (formOp === 'ADD') {
-          const res = await addPost(paramRequest)
+        if (formOp === FormOpera.ADD) {
+          const res = await MdAddPost(funcNo, paramRequest)
           if (res['code'] !== '200') {
-            ElMessageBox.alert('保存错误:' + res['msg'], '提示')
+            await ElMessageBox.alert('保存错误:' + res['msg'], '提示')
           } else {
-            ElMessageBox.alert('保存成功' + res['msg'], '提示')
+            await ElMessageBox.alert('保存成功', '提示')
+            await mdFormMethods.hideMdForm()
+            await mdFormMethods.setFormOpera(FormOpera.INIT)
           }
-        } else if (formOp === 'MOD') {
-          const res2 = await modPost(paramRequest)
+        } else if (formOp === FormOpera.MOD) {
+          const res2 = await MdModPost(funcNo, paramRequest)
           if (res2['code'] !== '200') {
-            ElMessageBox.alert('保存错误:' + res2['msg'], '提示')
+            await ElMessageBox.alert('保存错误:' + res2['msg'], '提示')
           } else {
-            ElMessageBox.alert('保存成功' + res2['msg'], '提示')
+            await ElMessageBox.alert('保存成功', '提示')
+            await mdFormMethods.hideMdForm()
+            await mdFormMethods.setFormOpera(FormOpera.INIT)
           }
         }
       }
@@ -182,6 +193,14 @@ export const useWsMdForm = (funcNo: string) => {
     getMdTableDatas: async (idx: string) => {
       const form = await getForm()
       return form?.exposed.getMdTableDatas(funcNo, idx)
+    },
+    setDetailTableEditRowData: async (name: string, value: any) => {
+      const form = await getForm()
+      return form?.exposed.setDetailTableEditRowData(name, value)
+    },
+    getDetailTableEditRowData: async () => {
+      const form = await getForm()
+      return form?.exposed.getDetailTableEditRowData()
     }
   }
 
