@@ -19,13 +19,14 @@ import { WsResultObj } from '@/wscore/types/wsform'
 import { TbProductDto } from '@/wscore/views/met/MGoods/MGoodsType'
 import { MVendorPageQuery } from '@/wscore/api/met/mvendor/mvendor'
 import { useI18n } from '@/hooks/web/useI18n'
-import { computed, defineComponent, getCurrentInstance, nextTick, ref, unref } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, unref } from 'vue'
 import { MOrderPageQuery } from '@/wscore/api/pur/MOrderApi'
 import { ElButton, ElInput } from 'element-plus'
 import WsMdForm from '@/wscore/components/WsMdForm/WsMdForm.vue'
 import { useWsMdForm } from '@/wscore/hook/useWsMdForm'
 import WVxeProductInput from '@/wscore/vxecomponents/WVxeProductInput/WVxeProductInput.vue'
 import WsProductInput from '@/wscore/components/WsProductInput/WsProductInput.vue'
+import { useWsToolBar } from '@/wscore/hook/useWsToolBar'
 
 const { t } = useI18n()
 
@@ -61,9 +62,13 @@ const {
 console.log('ef table', elTableRef)
 const { mdFormRegister, mdFormMethods } = useWsMdForm(unref(funcNo))
 
+const { toolBarRegister, toolBarMethods } = useWsToolBar()
+
 const { setSearchParmas } = methods
 
 let editFormShow = ref(false)
+
+const modrFlag = ref(false)
 
 const doEvExit = (addFlag: boolean) => {
   editFormShow.value = addFlag
@@ -144,6 +149,19 @@ const doOrderQty = (val) => {
     })
   }
 }
+
+onMounted(() => {
+  //debug
+  toolBarMethods.getPermissionData().then((res) => {
+    console.log('page permission', res)
+  })
+
+  toolBarMethods.hasModR().then((res) => {
+    //debug
+    console.log('page modr', res)
+    modrFlag.value = unref(res)
+  })
+})
 </script>
 
 <template>
@@ -151,7 +169,12 @@ const doOrderQty = (val) => {
     <SearchForm :schema="searchSchema" @search="setSearchParmas" />
   </ContentWrap>
   <ContentWrap v-if="!editFormShow">
-    <WsToolBar :func-no="funcNo" @ue-add="doUeAdd" v-if="!editFormShow" />
+    <WsToolBar
+      :func-no="funcNo"
+      @ue-add="doUeAdd"
+      v-if="!editFormShow"
+      @register="toolBarRegister"
+    />
     <WsTable
       :columns="showColumns"
       :data="tableObject.tableList"
@@ -173,7 +196,7 @@ const doOrderQty = (val) => {
       <!--      </template>-->
 
       <template #action="{ row }">
-        <ElButton @click="doUeEdit(row)" link type="primary">编辑</ElButton>
+        <ElButton @click="doUeEdit(row)" link type="primary" v-if="modrFlag">编辑</ElButton>
         <ElButton @click="doUeView(row)" link type="primary">查看</ElButton>
       </template>
       <template #orderNo-header>

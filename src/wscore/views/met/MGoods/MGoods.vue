@@ -3,7 +3,12 @@
     <SearchForm :schema="searchSchema" @search="setSearchParmas" />
   </ContentWrap>
   <ContentWrap v-if="!editFormShow">
-    <WsToolBar :func-no="funcNo" @ue-add="doUeAdd" v-if="!editFormShow" />
+    <WsToolBar
+      :func-no="funcNo"
+      @ue-add="doUeAdd"
+      v-if="!editFormShow"
+      @register="toolBarRegister"
+    />
     <WsTable
       :columns="showColumns"
       :data="tableObject.tableList"
@@ -25,7 +30,7 @@
       </template>
 
       <template #action="{ row }">
-        <el-button @click="doUeEdit(row)" text type="primary">编辑</el-button>
+        <el-button @click="doUeEdit(row)" text type="primary" v-if="modrFlag">编辑</el-button>
         <el-button @click="doUeView(row)" text type="primary">查看</el-button>
       </template>
     </WsTable>
@@ -84,7 +89,7 @@ export default defineComponent({
     const { setSearchParmas } = methods
 
     //可编辑form
-    let { toolBarRegister } = useWsToolBar()
+    let { toolBarRegister, toolBarMethods } = useWsToolBar()
 
     //后去可编辑form
     const { editFormRegister, editFormRef, editFormMethods } = useWsEditForm({
@@ -114,6 +119,8 @@ export default defineComponent({
 
     //定义控制编辑窗口
     let editFormShow = ref(false)
+
+    let modrFlag = ref(false)
 
     const doEvExit = (addFlag: boolean) => {
       editFormShow.value = addFlag
@@ -186,9 +193,9 @@ export default defineComponent({
     // )
 
     onMounted(() => {
-      //editFormShow = addPageVisibleFlag
-      //debug
-      //console.log('mgoods', addPageVisibleFlag)
+      toolBarMethods.hasModR().then((res) => {
+        modrFlag.value = unref(res)
+      })
     })
 
     return {
@@ -210,7 +217,8 @@ export default defineComponent({
       saveCommit,
       doEvSave,
       doItemReturn,
-      doItemChange
+      doItemChange,
+      modrFlag
     }
   }
 })

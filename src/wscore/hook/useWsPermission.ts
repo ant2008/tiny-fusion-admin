@@ -15,6 +15,12 @@ export const useWsPermission = () => {
     return findIdx >= 0
   }
 
+  const getPermission = (funcNo: string): FuncRightType | undefined => {
+    return permissionStore.getPermissionList.find((value) => {
+      return value.funcNo == funcNo
+    })
+  }
+
   const hasMethods: {
     hasAddR: (funcNo: string) => boolean
     hasModR: (funcNo: string) => boolean
@@ -80,6 +86,7 @@ export const useWsPermission = () => {
 
   return {
     hasPermission,
-    hasMethods
+    hasMethods,
+    getPermission
   }
 }

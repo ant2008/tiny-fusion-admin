@@ -10,7 +10,19 @@ import {
 } from '@/wscore/api/base/basetype'
 import { AxiosPromise } from 'axios'
 
-const { getUseToken, postUseToken } = useAxiosToken()
+const { getUseToken, postUseToken, getToken } = useAxiosToken()
+
+export const getPageButtonPermission = (pageFunc: string) => {
+  const sUrl = 'Main/GetFuncDetailRight'
+  return getUseToken({
+    url: sUrl,
+    data: {
+      aToken: getToken(),
+      aFuncNo: pageFunc
+    }
+  })
+}
+
 export const pageQuery = (pageRequest: PageRequest, pageFunc: string) => {
   const sUrl = pageFunc + '/PageQuery'
   return getUseToken({

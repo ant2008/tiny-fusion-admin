@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model.">
-      <change afterPath="$PROJECT_DIR$/src/wscore/vxecomponents/WVxeProductInput/WVxeProductInput.vue" afterDir="false" />
+    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs">
+      <change afterPath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/api/base/base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/base/base.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/api/base/basetype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/base/basetype.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsProductInput/WsProductInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsProductInput/WsProductInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsMdForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsMdForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/modal/QueryModal/QueryModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/modal/QueryModal/QueryModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsToolBar/WsToolBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsToolBar/WsToolBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useAxios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useAxios.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsPermission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsPermission.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsToolBar.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsToolBar.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" afterDir="false" />
     </list>
@@ -27,8 +26,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="Vue Single File Component" />
+        <option value="Vue Composition API Component" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -48,6 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
@@ -59,6 +60,11 @@
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
+    ]
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -76,7 +82,12 @@
       <workItem from="1684484980087" duration="815000" />
       <workItem from="1684910377157" duration="21000" />
       <workItem from="1686303223067" duration="950000" />
-      <workItem from="1686364716973" duration="41163000" />
+      <workItem from="1686364716973" duration="41610000" />
+      <workItem from="1686991778868" duration="86000" />
+      <workItem from="1686991889747" duration="2835000" />
+      <workItem from="1687010861022" duration="27810000" />
+      <workItem from="1688431696784" duration="9000" />
+      <workItem from="1688445922172" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="init push">
       <created>1682065091219</created>
@@ -92,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686303566466</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs">
+      <created>1686988521938</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686988521938</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +131,7 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="init push" />
     <MESSAGE value="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model." />
-    <option name="LAST_COMMIT_MESSAGE" value="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model." />
+    <MESSAGE value="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs" />
   </component>
 </project>

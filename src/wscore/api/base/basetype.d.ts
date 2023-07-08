@@ -32,3 +32,25 @@ export type MdPostRequestParam = {
   aMasterJson: string
   aDetailJson: string
 }
+
+export type PageButtonRight = {
+  idx: bigint
+  userId: string
+  userName: string
+  userStatus: number
+  funcState: number
+  roleStatus: number
+  funcNo: string
+  parentNo: string
+  descr: string
+  funcActive: number
+  addr: number
+  modr: number
+  delr: number
+  prtr: number
+  chkr: number
+  othr: number
+  quyr: number
+  rfuncStatus: number
+  tenantId: string
+}

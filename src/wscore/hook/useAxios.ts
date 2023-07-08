@@ -88,6 +88,10 @@ export const useAxiosToken = () => {
   }
 
   return {
+    getToken: (): string => {
+      const appStore = useAppStore()
+      return appStore.getToken
+    },
     getUseToken: <T = any>(option: any) => {
       return request({
         method: 'get',
