@@ -11,7 +11,8 @@ import WsTable from '@/wscore/components/Table/WsTable.vue'
 import SearchForm from '@/wscore/components/SearchForm/SearchForm.vue'
 import {
   editSchema_Basic,
-  editSchema_Colset, editSchema_Gen,
+  editSchema_Colset,
+  editSchema_Gen,
   searchSchema,
   showColumns
 } from '@/wscore/views/sys/GlAutoCode/GlAutoCodeData'
@@ -22,6 +23,11 @@ import { useWsTable } from '@/wscore/hook/useWsTable'
 import { useWsToolBar } from '@/wscore/hook/useWsToolBar'
 import WsEditForm from '@/wscore/components/WsEditForm/WsEditForm.vue'
 import { useWsEditForm } from '@/wscore/hook/useWsEditForm'
+import TplTableModal from '@/wscore/modal/TplTableModal/TplTableModal.vue'
+import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
+import { tplTableShowColumns } from '@/wscore/modal/TplTableModal/TplTableModalData'
+import GlAutoCodeTabForm from '@/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.vue'
+import { useGlAutoCodeTabForm } from '@/wscore/views/sys/GlAutoCode/useGlAutoCodeTabForm'
 
 //===========多语言及当前page级变量=================
 const { t } = useI18n()
@@ -36,10 +42,11 @@ const funcNo = computed(() => {
 
 //-----------其他变量--------------
 let activeName = ''
+let tplTableModalFlag = unref(false)
 
 //===== 查询及展现表格=============================
 
-const { register, tableObject, methods } = useWsTable<[]>({
+const { register, tableObject, methods } = useWsTable({
   pageQuery: MAutoCodePageQuery,
   response: {
     list: 'list',
@@ -62,10 +69,32 @@ const doUeAdd = (addVisible) => {
   // editFormMethods.addForm()
 }
 //改
-const doUeEdit = (row) => {}
+const doUeEdit = (row) => {
+  editFormShow.value = true
+  tabFormMethods.showTabForm(row)
+  // editFormMethods.modForm(row)
+}
 
 //查
 const doUeView = (row) => {}
+
+//导入表
+const doImpTable = () => {
+  //弹出对话框
+  // tplTableModalFlag = true
+  modalMethods.openModal()
+}
+
+//modal return
+const doModalReturn = (retData) => {
+  // inputValue.value = retData[unref(props).itemKey]
+  // // const selfInput = selfCp?.refs['_thsInput'] as ComponentRef<typeof ElInput>
+  // // unref(selfInput)?.$forceUpdate()
+  // emit('ev-item-return', unref(props).itemKey, inputValue.value, retData)
+  // emit('update:modelValue', retData[unref(props).itemKey])
+  //debug
+  console.log('modal return ', retData)
+}
 
 //======PAGE MOUNT 事件=================
 onMounted(() => {
@@ -76,45 +105,55 @@ onMounted(() => {
 })
 //=====编辑FORM区======================
 //-----------basic------------------
-const { editFormRegister, editFormRef, editFormMethods } = useWsEditForm({
-  funcNo: unref(funcNo)
-})
-const doBasicExit = (addFlag: boolean) => {}
+// const { editFormRegister, editFormRef, editFormMethods } = useWsEditForm({
+//   funcNo: unref(funcNo)
+// })
 
-const doBasicSave = (formData: Recordable, formOp: string) => {
-  // saveCommit(formData, formOp).then(() => {
-  //   editFormShow.value = false
-  //   methods.getList()
-  // })
+const { queryModalRegister, methods: modalMethods } = useWsQueryModal()
+
+const { tabFormRegister, formRef, tabFormMethods } = useGlAutoCodeTabForm()
+
+const doTabFormExit = () => {
+  editFormShow.value = false
+  tabFormMethods.hideTabForm()
 }
+
+// const doBasicExit = (addFlag: boolean) => {}
+//
+// const doBasicSave = (formData: Recordable, formOp: string) => {
+//   // saveCommit(formData, formOp).then(() => {
+//   //   editFormShow.value = false
+//   //   methods.getList()
+//   // })
+// }
 //---------colset-------------------
-const {
-  register: colsetRegister,
-  tableObject: colsetTableObject,
-  methods: colsetMethods
-} = useWsTable<[]>({
-  pageQuery: MAutoCodePageQuery,
-  response: {
-    list: 'list',
-    total: 'total'
-  }
-})
+// const {
+//   register: colsetRegister,
+//   tableObject: colsetTableObject,
+//   methods: colsetMethods
+// } = useWsTable<[]>({
+//   pageQuery: MAutoCodePageQuery,
+//   response: {
+//     list: 'list',
+//     total: 'total'
+//   }
+// })
 //--------genset----------------------
-const {
-  editFormRegister: colsetFormRegister,
-  editFormRef: colsetFormRef,
-  editFormMethods: colsetFormMethods
-} = useWsEditForm({
-  funcNo: unref(funcNo)
-})
-const doColSetExit = (addFlag: boolean) => {}
-
-const doColSetSave = (formData: Recordable, formOp: string) => {
-  // saveCommit(formData, formOp).then(() => {
-  //   editFormShow.value = false
-  //   methods.getList()
-  // })
-}
+// const {
+//   editFormRegister: gensetFormRegister,
+//   editFormRef: gensetFormRef,
+//   editFormMethods: gensetFormMethods
+// } = useWsEditForm({
+//   funcNo: unref(funcNo)
+// })
+// const doColSetExit = (addFlag: boolean) => {}
+//
+// const doColSetSave = (formData: Recordable, formOp: string) => {
+//   // saveCommit(formData, formOp).then(() => {
+//   //   editFormShow.value = false
+//   //   methods.getList()
+//   // })
+// }
 </script>
 
 <template>
@@ -122,7 +161,11 @@ const doColSetSave = (formData: Recordable, formOp: string) => {
     <SearchForm :schema="searchSchema" @search="setSearchParmas" />
   </ContentWrap>
   <ContentWrap v-if="!editFormShow">
-    <WsToolBar :func-no="funcNo" @ue-add="doUeAdd" @register="toolBarRegister" />
+    <WsToolBar :func-no="funcNo" @ue-add="doUeAdd" @register="toolBarRegister" ifExtButton>
+      <template #usExtButton>
+        <el-button @click="doImpTable" type="primary">导入表</el-button>
+      </template>
+    </WsToolBar>
     <WsTable
       :columns="showColumns"
       :data="tableObject.tableList"
@@ -144,57 +187,22 @@ const doColSetSave = (formData: Recordable, formOp: string) => {
       <!--      </template>-->
 
       <template #action="{ row }">
-        <el-button @click="doUeEdit(row)" type="primary" link v-if="modrFlag">编辑</el-button>
+        <el-button @click="doUeEdit(row)" type="primary" link>编辑</el-button>
         <el-button @click="doUeView(row)" type="primary" link>查看</el-button>
       </template>
     </WsTable>
   </ContentWrap>
-  <ContentWrap v-if="editFormShow">
-    <ElTabs v-if="editFormShow" v-model="activeName">
-      <ElTabPane label="基本设置" name="basicSet">
-        <WsEditForm
-          :edit-schema="editSchema_Basic"
-          @ev-exit="doBasicExit"
-          @register="editFormRegister"
-          @ev-save="doBasicSave"
-        />
-      </ElTabPane>
-      <ElTabPane label="字段设置" name="colSet">
-        <WsTable
-          :columns="editSchema_Colset"
-          :data="tableObject.tableList"
-          :loading="tableObject.loading"
-          :height="600"
-          v-model:pageSize="tableObject.pageSize"
-          v-model:currentPage="tableObject.currentPage"
-          :pagination="{
-            total: tableObject.total,
-            disabled: false
-          }"
-          :edit-config="{
-            trigger: 'click',
-            mode: 'row',
-            autoClear: true,
-            showStatus: true
-          }"
-          keep-source
-          @Register="colsetRegister"
-          ref="thsColTable"
-          row-config="{
-          useKey: false
-        }"
-        />
-      </ElTabPane>
-      <ElTabPane label="生成设置" name="genSet">
-        <WsEditForm
-          :edit-schema="editSchema_Gen"
-          @ev-exit="doColSetExit"
-          @register="colsetRegister"
-          @ev-save="doColSetSave"
-        />
-      </ElTabPane>
-    </ElTabs>
-  </ContentWrap>
+  <GlAutoCodeTabForm
+    @tabform-register="tabFormRegister"
+    v-if="editFormShow"
+    @ev-exit="doTabFormExit"
+  />
+  <TplTableModal
+    :show-columns="tplTableShowColumns"
+    @modal-register="queryModalRegister"
+    @ev-return="doModalReturn"
+    radio-selection
+  />
 </template>
 
 <style scoped lang="less"></style>

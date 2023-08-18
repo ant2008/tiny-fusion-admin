@@ -7,6 +7,7 @@
       <ElDivider direction="vertical" v-if="chkHiddenFlag" />
       <vxe-button @click="chkEvent" v-if="chkHiddenFlag" status="warning">审核</vxe-button>
       <vxe-button @click="unChkEvent" v-if="chkHiddenFlag" status="warning">否决</vxe-button>
+      <ElDivider direction="vertical" v-if="ifExtButton" />
       <slot name="usExtButton"></slot>
     </template>
   </vxe-toolbar>
@@ -31,7 +32,8 @@ export default defineComponent({
     expHidden: propTypes.bool.def(false),
     prtHidden: propTypes.bool.def(false),
     chkHidden: propTypes.bool.def(false),
-    modHidden: propTypes.bool.def(false)
+    modHidden: propTypes.bool.def(false),
+    ifExtButton: propTypes.bool.def(false)
   },
   emits: ['ueAdd', 'ueExport', 'uePrint', 'register', 'ueChk', 'ueUnChk'],
   setup(props, { emit, expose }) {

@@ -6,6 +6,7 @@ import { TableExpose } from '@/components/Table'
 // import { ElMessage, ElMessageBox } from 'element-plus'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
 import { TableSetPropsType } from '@/types/table'
+import VXETable from 'vxe-table'
 
 // const { t } = useI18n()
 
@@ -108,9 +109,11 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
   const tableRef = ref<typeof WsTable & TableExpose>()
 
   // ElTable实例
-  const elTableRef = ref<ComponentRef<typeof WsTable>>()
+  // const elTableRef = ref<ComponentRef<typeof WsTable>>()
+  // ElTable实例
+  const elTableRef = ref<ComponentRef<typeof VXETable>>()
 
-  const register = (ref: typeof WsTable & TableExpose, elRef: ComponentRef<typeof WsTable>) => {
+  const register = (ref: typeof WsTable & TableExpose, elRef: ComponentRef<typeof VXETable>) => {
     tableRef.value = ref
     elTableRef.value = elRef
   }
@@ -261,11 +264,18 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
           //debug
           console.log('tab-object', tableObject.tableList)
         } else if (Reflect.has(res, 'data') && res['data'] !== null && res['data'] !== undefined) {
-          // @ts-ignore
-          tableObject.tableList = res['data']
-          //get(res.data || {}, config?.response.list as string)
-          // @ts-ignore
-          tableObject.total = 0
+          //debug
+          console.log('res data', res['data'])
+          if (Reflect.has(res['data'], 'pageDatas')) {
+            tableObject.tableList = res['data']['pageDatas']
+            tableObject.total = res['data']['totalRows']
+          } else {
+            // @ts-ignore
+            tableObject.tableList = res['data']
+            //get(res.data || {}, config?.response.list as string)
+            // @ts-ignore
+            tableObject.total = 0
+          }
         } else {
           tableObject.tableList = get(res.data || {}, config?.response.list as string)
           tableObject.total = get(res.data || {}, config?.response?.total as string) || 0

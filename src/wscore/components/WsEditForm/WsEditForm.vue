@@ -25,7 +25,16 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onMounted, PropType, ref, unref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  onMounted,
+  PropType,
+  ref,
+  unref,
+  watch
+} from 'vue'
 import WsForm from '@/wscore/components/WsForm/WsForm.vue'
 import ContentWrap from '@/components/ContentWrap/src/ContentWrap.vue'
 import { propTypes } from '@/utils/propTypes'
@@ -49,7 +58,8 @@ export default defineComponent({
     isCol: propTypes.bool.def(true),
     saveLoading: propTypes.bool.def(false),
     //功能号
-    funcNo: propTypes.string.def('')
+    funcNo: propTypes.string.def(''),
+    ifShow: propTypes.bool.def(false)
   },
   emits: ['evSave', 'evExit', 'register', 'ev-item-return', 'ev-item-change'],
   setup(props, { emit, expose }) {
@@ -165,6 +175,19 @@ export default defineComponent({
     const getFormData = async () => {
       return await methods.getFormData()
     }
+
+    watch(
+      () => props.ifShow,
+      (val) => {
+        if (val !== null && val) {
+          formVisible.value = props.ifShow
+        }
+      },
+      {
+        deep: true,
+        immediate: true
+      }
+    )
 
     expose({
       setValues,

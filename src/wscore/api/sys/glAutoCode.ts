@@ -5,7 +5,7 @@ import { PageRequest } from '@/wscore/api/base/basetype'
 const { postUseToken } = useAxiosToken()
 
 export const MAutoCodePageQuery = (params: any): Promise<IResponse> => {
-  const sUrl = '/MAutoCode/PageQuery'
+  const sUrl = '/GlAutoCode/PageQuery'
 
   const paramJson = buildQueryJson(params?.params as Recordable)
   const paramRequest: PageRequest = {

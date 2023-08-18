@@ -1,11 +1,10 @@
 import { useAxiosToken } from '@/wscore/hook/useAxios'
-import { AxiosPromise } from 'axios'
-import { StockBatchnoRequestConfig, TbStockD } from '@/wscore/api/stock/stockType'
+import { StockBatchnoRequestConfig } from '@/wscore/api/stock/stockType'
 const { getUseToken } = useAxiosToken()
 
 export const ListStockBatchnoApi = (
   paramRequest: StockBatchnoRequestConfig
-): AxiosPromise<TbStockD[]> => {
+): Promise<IResponse> => {
   const sUrl = 'MStockd' + '/ListStockBatchno'
   const formDatas = paramRequest
     ? paramRequest.params

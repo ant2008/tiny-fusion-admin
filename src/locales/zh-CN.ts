@@ -1217,6 +1217,27 @@ export default {
     autocodeOutpath: '代码生成路径',
     autocodeFrontPage: '前端页面',
     autocodeFrontOutpath: '前端生成路径',
-    autocodeOverride: '是否覆盖'
+    autocodeOverride: '是否覆盖',
+
+    autocodeColName: '列名',
+    autocodeColChname: '列中文名',
+    autocodeKeyName: '字段名',
+    autocodeGridShow: '是否Grid展现',
+    autocodeFormShow: '是否Form展现',
+    autocodeQueryShow: '是否查询展现',
+    autocodeIl8Key: '多语言',
+    autocodeReadonly: '是否只读',
+    autocodeFormType: 'Form类型',
+    autocodeFormSpan: 'Form宽Span',
+    autocodeFormRules: 'Form校验规则',
+    autocodeFormOplist: 'Form下拉字典',
+    autocodeQueryType: '查询列类型',
+    autocodeQueryOpera: '查询操作符',
+    autocodeQueryStyle: '查询样式',
+    autocodeGridType: 'Grid列类型',
+    autocodeGridSortable: 'Grid列排序',
+    autocodeGridWidth: 'Grid列宽度',
+    autocodeGridSlotscope: 'Grid列Slot',
+    autocodeGridSlotscopeKey: 'Grid列SlotKey'
   }
 }

@@ -30,13 +30,17 @@ export const useWsEditForm = (props?: WsEditFormProp) => {
   ) => {
     formRef.value = ref
     elFormRef.value = elRef
+    //debug
+    console.log('useWsEditForm', ref, elRef)
   }
 
   const getForm = async () => {
     await nextTick()
     const form = unref(formRef)
     if (!form) {
-      console.error('The form is not registered. Please use the register method to register')
+      console.error(
+        'The form is not registered. Please use the register method to register--' + funcNo
+      )
     }
     return form
   }

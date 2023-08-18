@@ -4,19 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs">
-      <change afterPath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" afterDir="false" />
+    <list default="true" id="bca3741e-fb95-4971-b50f-4658379192e0" name="Changes" comment="1.add generate code page 2.fix toolbar bug 3.fix permission bug">
+      <change afterPath="$PROJECT_DIR$/src/wscore/api/sys/glTplColumnsApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/modal/TplTableModal/TplTableModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/modal/TplTableModal/TplTableModalData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/useGlAutoCodeTabForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlTplColumns/GlTplColumns.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlTplColumns/GlTplColumnsData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/api/base/base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/base/base.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/api/base/basetype.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/base/basetype.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locales/zh-CN.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/zh-CN.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/api/stock/stockApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/stock/stockApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/components/WsToolBar/WsToolBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsToolBar/WsToolBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useAxios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useAxios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsPermission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsPermission.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsToolBar.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsToolBar.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsTable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/modal/BatchnoQueryModal/BatchnoQueryModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/modal/BatchnoQueryModal/BatchnoQueryModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +43,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2Nr3o5szL6xTXtP16jlr6uTvtoD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -58,6 +67,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -70,7 +80,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="cca3e229-5d1b-4e6b-ad3b-4bbd09cf5369" name="变更" comment="" />
+      <changelist id="bca3741e-fb95-4971-b50f-4658379192e0" name="Changes" comment="1.add generate code page 2.fix toolbar bug 3.fix permission bug" />
       <created>1680408545319</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -88,6 +98,19 @@
       <workItem from="1687010861022" duration="27810000" />
       <workItem from="1688431696784" duration="9000" />
       <workItem from="1688445922172" duration="8000" />
+      <workItem from="1688797077869" duration="3757000" />
+      <workItem from="1691497549799" duration="301000" />
+      <workItem from="1691497864650" duration="610000" />
+      <workItem from="1691503974159" duration="598000" />
+      <workItem from="1691913196922" duration="68000" />
+      <workItem from="1691913272144" duration="7000" />
+      <workItem from="1691913285785" duration="8974000" />
+      <workItem from="1691928507024" duration="6802000" />
+      <workItem from="1691998778844" duration="5000" />
+      <workItem from="1691998791307" duration="2886000" />
+      <workItem from="1692001698692" duration="31285000" />
+      <workItem from="1692369137208" duration="8000" />
+      <workItem from="1692369152511" duration="569000" />
     </task>
     <task id="LOCAL-00001" summary="init push">
       <created>1682065091219</created>
@@ -110,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686988521938</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1.add generate code page 2.fix toolbar bug 3.fix permission bug">
+      <created>1688797383091</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688797383091</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +162,7 @@
     <MESSAGE value="init push" />
     <MESSAGE value="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model." />
     <MESSAGE value="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs" />
+    <MESSAGE value="1.add generate code page 2.fix toolbar bug 3.fix permission bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.add generate code page 2.fix toolbar bug 3.fix permission bug" />
   </component>
 </project>

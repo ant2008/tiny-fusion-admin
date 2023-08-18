@@ -58,11 +58,7 @@ import {
 import WsTable from '@/wscore/components/Table/WsTable.vue'
 import { ContentWrap } from '@/components/ContentWrap'
 import { propTypes } from '@/utils/propTypes'
-import {
-  StockBatchnoRequest,
-  StockBatchnoRequestConfig,
-  TbStockD
-} from '@/wscore/api/stock/stockType'
+import { StockBatchnoRequest, TbStockD } from '@/wscore/api/stock/stockType'
 import { useWsTable } from '@/wscore/hook/useWsTable'
 import { ListStockBatchnoApi } from '@/wscore/api/stock/stockApi'
 import { TableColumn } from '@/types/table'
@@ -111,11 +107,7 @@ export default defineComponent({
     //   data: []
     // }
 
-    const { register, tableObject, elTableRef, methods } = useWsTable<
-      TbStockD[],
-      TbStockD[],
-      StockBatchnoRequestConfig
-    >(tableConfig)
+    const { register, tableObject, elTableRef, methods } = useWsTable<TbStockD[]>(tableConfig)
 
     const doOpen = () => {
       //debug
