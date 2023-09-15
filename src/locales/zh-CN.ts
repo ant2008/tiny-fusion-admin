@@ -1208,14 +1208,14 @@ export default {
     autocodeType: '代码类型',
     autocodeTableName: '表名称',
     autocodeEntityName: '实体名称',
-    autocodeRelatype: '表关系类型',
+    autocodeRelatype: '表数据类型',
     autocodeDtlTableName: '子表名称',
     autocodeDtlEntityName: '子表实体名称',
     autocodeAuthor: '作者',
     autocodeModule: '模块名称',
     autocodePackage: 'Package名称',
     autocodeOutpath: '代码生成路径',
-    autocodeFrontPage: '前端页面',
+    autocodeFrontPage: '前端页面名称',
     autocodeFrontOutpath: '前端生成路径',
     autocodeOverride: '是否覆盖',
 
@@ -1227,6 +1227,7 @@ export default {
     autocodeQueryShow: '是否查询展现',
     autocodeIl8Key: '多语言',
     autocodeReadonly: '是否只读',
+    autocodeRequired: '是否必须',
     autocodeFormType: 'Form类型',
     autocodeFormSpan: 'Form宽Span',
     autocodeFormRules: 'Form校验规则',
@@ -1238,6 +1239,12 @@ export default {
     autocodeGridSortable: 'Grid列排序',
     autocodeGridWidth: 'Grid列宽度',
     autocodeGridSlotscope: 'Grid列Slot',
-    autocodeGridSlotscopeKey: 'Grid列SlotKey'
+    autocodeGridSlotscopeKey: 'Grid列SlotKey',
+
+    tableName: '表名',
+    tableComment: '表描述',
+    tableRows: '表行数',
+    autocodeColType: '字段类型',
+    autocodeColMaptype: 'JAVA字段类型'
   }
 }

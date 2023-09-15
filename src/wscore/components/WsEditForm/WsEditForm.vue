@@ -14,12 +14,12 @@
         type="primary"
         :loading="saveLoadingFlag"
         @click="doSave"
-        v-if="formOpera === 'ADD' || formOpera === 'MOD'"
+        v-if="(formOpera === 'ADD' || formOpera === 'MOD') && ifFuncButton == true"
       >
         {{ t('wsBase.save') }}
       </el-button>
 
-      <el-button @click="doExit">{{ t('wsBase.cancel') }}</el-button>
+      <el-button @click="doExit" v-if="ifFuncButton == true">{{ t('wsBase.cancel') }}</el-button>
     </div>
   </ContentWrap>
 </template>
@@ -59,7 +59,8 @@ export default defineComponent({
     saveLoading: propTypes.bool.def(false),
     //功能号
     funcNo: propTypes.string.def(''),
-    ifShow: propTypes.bool.def(false)
+    ifShow: propTypes.bool.def(false),
+    ifFuncButton: propTypes.bool.def(true)
   },
   emits: ['evSave', 'evExit', 'register', 'ev-item-return', 'ev-item-change'],
   setup(props, { emit, expose }) {
@@ -176,6 +177,10 @@ export default defineComponent({
       return await methods.getFormData()
     }
 
+    const getFormSchemaDatas = async () => {
+      return await methods.getFormSchemaDatas()
+    }
+
     watch(
       () => props.ifShow,
       (val) => {
@@ -199,7 +204,8 @@ export default defineComponent({
       hideEditForm,
       setFormFieldReadOnly,
       setFormOpera,
-      getFormData
+      getFormData,
+      getFormSchemaDatas
     })
 
     return {

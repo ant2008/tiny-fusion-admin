@@ -65,7 +65,9 @@ service.interceptors.response.use(
     } else if (response.data.code === result_code) {
       return response.data
     } else {
-      ElMessage.error(response.data.message)
+      console.log('err', response.data) // for debug
+      ElMessage.error(response.data.msg)
+      return Promise.reject(response.data)
     }
   },
   (error: AxiosError) => {

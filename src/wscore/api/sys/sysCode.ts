@@ -110,3 +110,12 @@ export const GetMedicalDeptSiteDicts = (): AxiosPromise<WsOptsType[]> => {
     headersType: 'application/x-www-form-urlencoded'
   })
 }
+
+export const GetSysCodeTopListDicts = (): AxiosPromise<WsOptsType[]> => {
+  const sUrl = 'Sscode/GetSysCodeTopList'
+  return getUseToken({
+    url: sUrl,
+    // data: menuParam,
+    headersType: 'application/x-www-form-urlencoded'
+  })
+}

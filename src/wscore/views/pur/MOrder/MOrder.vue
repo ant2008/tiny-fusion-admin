@@ -106,8 +106,6 @@ const doMdFormExit = (formVisible, formOper) => {
 }
 
 const doMdFormCommit = (masterData, detailData, formOper) => {
-  //debug
-  console.log('commit', masterData, detailData, formOper)
   mdFormMethods.saveCommit(masterData, detailData, formOper).then((res) => {
     editFormShow.value = false
     nextTick(() => {

@@ -11,8 +11,6 @@ export const useGlAutoCodeTabForm = () => {
 
   const tabFormRegister = (ref: typeof GlAutoCodeTabForm) => {
     formRef.value = ref
-    //debug
-    console.log('useGlAutoCodeForm', ref)
   }
 
   const getForm = async () => {
@@ -26,6 +24,7 @@ export const useGlAutoCodeTabForm = () => {
   const tabFormMethods: {
     showTabForm: (formData: Recordable) => void
     hideTabForm: () => void
+    listTabGrid: (formData: Recordable) => void
   } = {
     showTabForm: async (formData: Recordable) => {
       const form = await getForm()
@@ -34,6 +33,10 @@ export const useGlAutoCodeTabForm = () => {
     hideTabForm: async () => {
       const form = await getForm()
       form?.exposed.hideTabForm()
+    },
+    listTabGrid: async (gridData: Recordable) => {
+      const form = await getForm()
+      return form?.exposed.listTabGrid(gridData)
     }
   }
 

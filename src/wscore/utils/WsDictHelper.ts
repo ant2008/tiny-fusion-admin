@@ -274,3 +274,24 @@ export const getMedicalDepartDictsSelect = (): SelectOptionType[] => {
 
   return selectArr
 }
+
+export const getTopSysCodeDictsSelect = (): SelectOptionType[] => {
+  let selectArr: SelectOptionType[] = []
+  const tmpDictsArr: WsOptsType[] = wsStore.topSysCodeDicts
+
+  if (tmpDictsArr == null || tmpDictsArr.length <= 0) {
+    selectArr.push({
+      label: '',
+      value: ''
+    })
+  } else {
+    selectArr = tmpDictsArr.map<SelectOptionType>((val) => {
+      return Object.assign({
+        label: val.label,
+        value: val.value
+      })
+    })
+  }
+
+  return selectArr
+}

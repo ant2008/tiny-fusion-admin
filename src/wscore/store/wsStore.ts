@@ -13,6 +13,7 @@ export interface WsStoreState {
   glClassDicts: WsOptsType[]
   scheduleSiteDicts: WsDictType[]
   medicalDeptDicts: WsOptsType[]
+  topSysCodeDicts: WsOptsType[]
 }
 
 export const useWsStore = defineStore({
@@ -29,7 +30,8 @@ export const useWsStore = defineStore({
     areaDicts: [],
     glClassDicts: [],
     scheduleSiteDicts: [],
-    medicalDeptDicts: []
+    medicalDeptDicts: [],
+    topSysCodeDicts: []
   }),
   // persist: {
   //   enabled: true
@@ -70,6 +72,9 @@ export const useWsStore = defineStore({
     },
     setMedicalDeptDicts(medicalDeptDicts: WsOptsType[]): void {
       this.medicalDeptDicts = medicalDeptDicts
+    },
+    setTopSysCodeDits(topSysCodeDicts: WsOptsType[]): void {
+      this.topSysCodeDicts = topSysCodeDicts
     }
   }
 })

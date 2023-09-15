@@ -154,6 +154,18 @@ export const renderMedicalDepartSiteDict = (v) => {
   return text
 }
 
+export const renderTopSysCodeDict = (v) => {
+  let text = ''
+  const tmpDicts: WsOptsType[] = wsStore.topSysCodeDicts
+  const obj = tmpDicts.filter((item) => {
+    return item.value == v
+  })
+  if (obj.length > 0) {
+    text = obj[0].label
+  }
+  return text
+}
+
 export const renderDate = (v) => {
   if (v == null) {
     return ''

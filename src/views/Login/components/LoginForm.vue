@@ -18,7 +18,12 @@ import { userLogin } from '@/wscore/api/login/login'
 import { UserLoginDto, WsUserLoginType } from '@/wscore/api/login/logintype'
 import { routerMenus } from '@/wscore/menus'
 import { useWsStore } from '@/wscore/store/wsStore'
-import { GetRoleDictMap, GetSysCodeDictMap, GetUserDicts } from '@/wscore/api/sys/sysCode'
+import {
+  GetRoleDictMap,
+  GetSysCodeDictMap,
+  GetSysCodeTopListDicts,
+  GetUserDicts
+} from '@/wscore/api/sys/sysCode'
 import { useWsPermissionStore } from '@/wscore/store/wsPermission'
 import { getFuncRights } from '@/wscore/api/menu/menu'
 import { pathResolve } from '@/utils/routerHelper'
@@ -254,6 +259,11 @@ const signIn = async () => {
       const res4 = await GetRoleDictMap()
       if (res4) {
         wsStore.setRoleDicts(res4['dataList'])
+      }
+
+      const res5 = await GetSysCodeTopListDicts()
+      if (res5) {
+        wsStore.setTopSysCodeDits(res5.data)
       }
     }
   })

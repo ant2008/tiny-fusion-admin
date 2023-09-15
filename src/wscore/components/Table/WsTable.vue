@@ -247,9 +247,6 @@ export default defineComponent({
       }
     )
 
-    //debug
-    console.log('pageer', unref(getProps).pagination)
-
     const getBindValue = computed(() => {
       const bindValue: Recordable = { ...attrs, ...props }
       delete bindValue.columns
@@ -276,7 +273,7 @@ export default defineComponent({
           sortable={true}
           width="50"
         />
-      ) : radioSelection !== undefined ? (
+      ) : radioSelection ? (
         <vxe-column
           type="radio"
           // reserveSelection={reserveSelection}

@@ -105,7 +105,7 @@ export const useWsEditForm = (props?: WsEditFormProp) => {
      */
     getFormData: async <T = Recordable>(): Promise<T> => {
       const form = await getForm()
-      return form?.exposed.formModel as T
+      return form?.exposed.getFormData()
     },
     getFormSchemaDatas: async <T = Recordable>(): Promise<T> => {
       const form = await getForm()
