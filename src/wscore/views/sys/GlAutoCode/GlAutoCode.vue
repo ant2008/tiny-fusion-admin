@@ -22,7 +22,8 @@ import {
   ImplTplTable,
   ListAutocodeColSet,
   MAutoCodePageQuery,
-  SynImplTable
+  SynImplTable,
+  ZipCode
 } from '@/wscore/api/sys/glAutoCode'
 import { useWsTable } from '@/wscore/hook/useWsTable'
 import { useWsToolBar } from '@/wscore/hook/useWsToolBar'
@@ -105,6 +106,21 @@ const doUeCode = (row) => {
     })
     .catch((err) => {
       ElMessageBox.alert('生成代码失败!' + err.msg, '提示', {
+        confirmButtonText: 'OK'
+      })
+    })
+}
+
+//下载代码
+const doUeZipCode = (row) => {
+  ZipCode(row.idx)
+    .then((res) => {
+      ElMessageBox.alert('打包下载代码成功!', '提示', {
+        confirmButtonText: 'OK'
+      })
+    })
+    .catch((err) => {
+      ElMessageBox.alert('打包下载代码失败!' + err.msg, '提示', {
         confirmButtonText: 'OK'
       })
     })
@@ -195,6 +211,7 @@ const doTabFormExit = () => {
       <template #action="{ row }">
         <el-button @click="doUeEdit(row)" type="primary" link>编辑</el-button>
         <el-button @click="doUeCode(row)" type="primary" link>生成代码</el-button>
+        <el-button @click="doUeZipCode(row)" type="primary" link>下载代码</el-button>
       </template>
     </WsTable>
   </ContentWrap>

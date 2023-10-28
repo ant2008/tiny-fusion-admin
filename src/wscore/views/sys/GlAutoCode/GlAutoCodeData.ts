@@ -101,6 +101,14 @@ export const showColumns = reactive<TableColumn[]>([
     }
   },
   {
+    field: 'autocodeTableType',
+    label: t('wsModule.autocodeTableType'),
+    minWidth: 120,
+    formatter: (cellValue) => {
+      return renderSysCodeDict(unref(cellValue).autocodeTableType, 'S71')
+    }
+  },
+  {
     field: 'autocodeTableName',
     label: t('wsModule.autocodeTableName'),
     minWidth: 200
@@ -241,6 +249,20 @@ export const editSchema_Basic: FormSchema[] = [
     }
   },
   {
+    field: 'autocodeTableType',
+    label: t('wsModule.autocodeTableType'),
+    component: 'Select',
+    colProps: {
+      span: 12
+    },
+    componentProps: {
+      options: getSyscodeSelect('S71'),
+      style: {
+        width: '100%'
+      }
+    }
+  },
+  {
     field: 'autocodeRelatype',
     label: t('wsModule.autocodeRelatype'),
     component: 'Select',
@@ -356,32 +378,44 @@ export const editSchema_Basic: FormSchema[] = [
       rules: [{ type: 'string', required: true, message: '编码不能为空!' }]
     }
   },
-  {
-    field: 'autocodeModule',
-    label: t('wsModule.autocodeModule'),
-    component: 'Input',
-    // colProps: {
-    //   span: 24
-    // },
-    componentProps: {
-      readonly: false,
-      rules: [{ required: true, message: '模块名称不能为空!', trigger: 'blur' }]
-      // modelValue: unref(tmpItemName)
-      //'onUpdate:modelValue': (value) => $emit('update:modelValue', value)
-    }
-  },
+  // {
+  //   field: 'autocodeModule',
+  //   label: t('wsModule.autocodeModule'),
+  //   component: 'Input',
+  //   // colProps: {
+  //   //   span: 24
+  //   // },
+  //   componentProps: {
+  //     readonly: false,
+  //     rules: [{ required: true, message: '模块名称不能为空!', trigger: 'blur' }]
+  //     // modelValue: unref(tmpItemName)
+  //     //'onUpdate:modelValue': (value) => $emit('update:modelValue', value)
+  //   }
+  // },
   {
     field: 'autocodePackage',
     label: t('wsModule.autocodePackage'),
     component: 'Input',
-    // colProps: {
-    //   span: 24
-    // },
+    colProps: {
+      span: 12
+    },
     componentProps: {
       readonly: false,
       rules: [{ required: true, message: '包名称不能为空!', trigger: 'blur' }]
       // modelValue: unref(tmpItemName)
       //'onUpdate:modelValue': (value) => $emit('update:modelValue', value)
+    }
+  },
+  {
+    field: 'autocodeFrontPage',
+    label: t('wsModule.autocodeFrontPage'),
+    component: 'Input',
+    colProps: {
+      span: 12
+    },
+    componentProps: {
+      readonly: false,
+      rules: [{ required: true, message: '前端输出路径不能为空!', trigger: 'blur' }]
     }
   },
   {
@@ -394,18 +428,6 @@ export const editSchema_Basic: FormSchema[] = [
     componentProps: {
       readonly: false,
       rules: [{ required: true, message: '输出路径不能为空!', trigger: 'blur' }]
-    }
-  },
-  {
-    field: 'autocodeFrontPage',
-    label: t('wsModule.autocodeFrontPage'),
-    component: 'Input',
-    colProps: {
-      span: 24
-    },
-    componentProps: {
-      readonly: false,
-      rules: [{ required: true, message: '前端输出路径不能为空!', trigger: 'blur' }]
     }
   },
   {

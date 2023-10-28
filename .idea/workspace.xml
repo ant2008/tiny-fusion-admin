@@ -4,28 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b08f89a-95c8-40e7-82a6-a9c6d54a1b78" name="更改" comment="1、add autocode page  2、add tpltable page 3、fix wstable bug 4、fix WsEditForm bug 5、fix api bug">
-      <change afterPath="$PROJECT_DIR$/src/wscore/modal/AutoCodeTableModal/AutoCodeTableData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wscore/modal/AutoCodeTableModal/AutoCodeTableModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wscore/utils/WsVxeHelper.ts" afterDir="false" />
+    <list default="true" id="6b08f89a-95c8-40e7-82a6-a9c6d54a1b78" name="更改" comment="1. update vxe-table version 2.finish code genenrate page 3.fix some bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/axios/service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/axios/service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/locales/zh-CN.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/zh-CN.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/api/sys/sysCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/sys/sysCode.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsEditForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/store/wsStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/store/wsStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/utils/RenderHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/utils/RenderHelper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/utils/WsDictHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/utils/WsDictHelper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrder.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/useGlAutoCodeTabForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/useGlAutoCodeTabForm.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +105,11 @@
       <workItem from="1694164745915" duration="4283000" />
       <workItem from="1694312299578" duration="8873000" />
       <workItem from="1694491630420" duration="2941000" />
-      <workItem from="1694494674379" duration="5309000" />
+      <workItem from="1694494674379" duration="8868000" />
+      <workItem from="1694844647217" duration="4266000" />
+      <workItem from="1695437072357" duration="567000" />
+      <workItem from="1695521045061" duration="3267000" />
+      <workItem from="1698482933482" duration="1431000" />
     </task>
     <task id="LOCAL-00001" summary="init push">
       <created>1682065091219</created>
@@ -159,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692370617700</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1. update vxe-table version 2.finish code genenrate page 3.fix some bug">
+      <option name="closed" value="true" />
+      <created>1694787822447</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1694787822447</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +184,7 @@
     <MESSAGE value="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs" />
     <MESSAGE value="1.add generate code page 2.fix toolbar bug 3.fix permission bug" />
     <MESSAGE value="1、add autocode page  2、add tpltable page 3、fix wstable bug 4、fix WsEditForm bug 5、fix api bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、add autocode page  2、add tpltable page 3、fix wstable bug 4、fix WsEditForm bug 5、fix api bug" />
+    <MESSAGE value="1. update vxe-table version 2.finish code genenrate page 3.fix some bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. update vxe-table version 2.finish code genenrate page 3.fix some bug" />
   </component>
 </project>

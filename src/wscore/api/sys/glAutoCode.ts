@@ -114,3 +114,19 @@ export const GenCode = (idx: number): Promise<IResponse> => {
     data: paramRequest
   })
 }
+
+export const ZipCode = (idx: number): Promise<IResponse> => {
+  const sUrl = '/GlAutoCode/ZipCode'
+
+  // const paramJson = buildQueryJson(params?.params as Recordable)
+  const paramRequest: any = {
+    idx: idx
+  }
+
+  return postUseToken({
+    url: sUrl,
+    method: 'post',
+    headersType: 'application/x-www-form-urlencoded',
+    data: paramRequest
+  })
+}

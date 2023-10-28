@@ -1245,6 +1245,7 @@ export default {
     tableComment: '表描述',
     tableRows: '表行数',
     autocodeColType: '字段类型',
-    autocodeColMaptype: 'JAVA字段类型'
+    autocodeColMaptype: 'JAVA字段类型',
+    autocodeTableType: '表类型'
   }
 }
