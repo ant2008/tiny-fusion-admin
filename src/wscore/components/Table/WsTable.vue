@@ -387,6 +387,7 @@ export default defineComponent({
     return () => (
       <div v-loading={unref(getProps).loading}>
         <vxe-table
+          show-overflow
           ref={elTableRef}
           data={unref(getProps).data}
           onSelection-change={selectionChange}

@@ -36,6 +36,7 @@ import GlAutoCodeTabForm from '@/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.v
 import { useGlAutoCodeTabForm } from '@/wscore/views/sys/GlAutoCode/useGlAutoCodeTabForm'
 import AutoCodeTableModal from '@/wscore/modal/AutoCodeTableModal/AutoCodeTableModal.vue'
 import { autoCodeTableShowColumns } from '@/wscore/modal/AutoCodeTableModal/AutoCodeTableData'
+import { blobValidate, fileSaveAs } from '@/wscore/utils/DownloadHelper'
 
 //===========多语言及当前page级变量=================
 const { t } = useI18n()
@@ -115,11 +116,20 @@ const doUeCode = (row) => {
 const doUeZipCode = (row) => {
   ZipCode(row.idx)
     .then((res) => {
+      const isBlob = blobValidate(res.data)
+      if (isBlob) {
+        const blob = new Blob([res.data], { type: 'application/zip' })
+        fileSaveAs(blob, res['headers'].filename, null)
+      } else {
+        //this.printErrMsg(res.data);
+      }
       ElMessageBox.alert('打包下载代码成功!', '提示', {
         confirmButtonText: 'OK'
       })
     })
     .catch((err) => {
+      //debug
+      console.log(err)
       ElMessageBox.alert('打包下载代码失败!' + err.msg, '提示', {
         confirmButtonText: 'OK'
       })
@@ -166,6 +176,9 @@ onMounted(() => {
 // })
 
 const { queryModalRegister, methods: modalMethods } = useWsQueryModal()
+
+const { queryModalRegister: childQueryModalRegister, methods: childModalMethods } =
+  useWsQueryModal()
 
 const { tabFormRegister, formRef, tabFormMethods } = useGlAutoCodeTabForm()
 

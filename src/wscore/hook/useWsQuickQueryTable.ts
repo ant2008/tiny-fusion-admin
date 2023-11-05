@@ -157,10 +157,17 @@ export const useWsQickQueryTable = <T>(config?: UseQuickTableConfig<T>) => {
             tableObject.loading = false
           })
         if (res) {
+          //debug
+          console.log('ws quick query', res)
           //针对服务情况进行处理，过渡阶段方案，后续必须统一
           if (Reflect.has(res, 'page')) {
             tableObject.tableList = res['page']['pageDatas']
             tableObject.total = res['page']['totalRows']
+          } else if (Reflect.has(res, 'data')) {
+            //debug
+            console.log('ws quick query res', res['data']['pageDatas'])
+            tableObject.tableList = res['data']['pageDatas']
+            tableObject.total = res['data']['totalRows']
           } else {
             tableObject.tableList = get(res.data || {}, config?.response.list as string)
             tableObject.total = get(res.data || {}, config?.response?.total as string) || 0

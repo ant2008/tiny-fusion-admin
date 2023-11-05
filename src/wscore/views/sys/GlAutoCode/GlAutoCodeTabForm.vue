@@ -26,6 +26,7 @@ import { any } from 'vue-types'
 import { handleDataVxeRowKey, handleTableArraysVxeRowKey } from '@/wscore/utils/WsVxeHelper'
 import { AllAutoCommitRequest } from '@/wscore/api/sys/glAutocodetype'
 import { FormOpera } from '@/wscore/api/base/base'
+import WsAutoCodeChildTableInput from '@/wscore/components/WsAutoCodeChildTableInput/WsAutoCodeChildTableInput.vue'
 
 //===========多语言及当前page级变量=================
 const { t } = useI18n()
@@ -155,6 +156,17 @@ const listTabGrid = (datas: []) => {
   colsetMethods.setListDatas(datas)
 }
 
+const doItemReturn = (itemName, itemValue, retData) => {
+  if (itemName === 'autocodeTableName') {
+    nextTick(() => {
+      unref(editFormRef)?.exposed?.setValues({
+        autocodeDtlTableName: retData['autocodeTableName'],
+        autocodeDtlEntityName: retData['autocodeEntityName']
+      })
+    })
+  }
+}
+
 //============构造函数======
 const emit = defineEmits<{
   (e: 'tabform-register', value: any): void
@@ -180,6 +192,7 @@ defineExpose({
         @register="editFormRegister"
         :if-show="true"
         :if-func-button="false"
+        @ev-item-return="doItemReturn"
       />
     </ElTabPane>
     <ElTabPane label="字段设置" name="colSet">

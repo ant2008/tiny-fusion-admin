@@ -1,9 +1,9 @@
 <template>
   <WsQuickQueryInput
-    func-no="MVendor"
-    :quick-show-columns="vendorShowColumns"
+    func-no="GlAutoCode"
+    :quick-show-columns="autoCodeChildTableShowColumns"
     :readonly="readonly"
-    item-key="vendorId"
+    item-key="autocodeTableName"
     @ev-item-return="doItemReturn"
     v-model="inputValue"
   />
@@ -13,10 +13,10 @@
 import { defineComponent, nextTick, ref, watch } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import WsQuickQueryInput from '@/wscore/components/WsQuickQueryInput/WsQuickQueryInput.vue'
-import { vendorShowColumns } from '@/wscore/components/WsVendorInput/WsVendorInputData'
+import { autoCodeChildTableShowColumns } from '@/wscore/components/WsAutoCodeChildTableInput/WsAutoCodeChildTableInputData'
 
 export default defineComponent({
-  name: 'WsVendorInput',
+  name: 'WsAutoCodeChildTableInput',
   components: { WsQuickQueryInput },
   inheritAttrs: false,
   props: {
@@ -29,6 +29,7 @@ export default defineComponent({
     const doItemReturn = (itemName, itemValue, retData) => {
       emit('ev-item-return', itemName, itemValue, retData)
     }
+
     const inputValue = ref('')
     watch(
       () => _props.modelValue,
@@ -45,8 +46,8 @@ export default defineComponent({
     )
 
     return {
+      autoCodeChildTableShowColumns,
       inputValue,
-      vendorShowColumns,
       doItemReturn
     }
   }

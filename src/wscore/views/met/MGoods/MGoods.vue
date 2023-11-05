@@ -157,6 +157,8 @@ export default defineComponent({
         unref(editFormRef)?.exposed?.setValues({ itemName: retData['itemName'] })
       } else if (itemName === 'userId') {
         unref(editFormRef)?.exposed?.setValues({ ecCode: retData['userName'] })
+      } else if (itemName === 'vendorId') {
+        unref(editFormRef)?.exposed?.setValues({ vendorId: retData['vendorId'] })
       }
     }
 

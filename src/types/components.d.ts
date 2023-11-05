@@ -1,3 +1,5 @@
+import { WsComponentName } from '@/wscore/types/wscomponentName'
+
 export type ComponentName =
   | 'Radio'
   | 'RadioButton'
@@ -20,10 +22,7 @@ export type ComponentName =
   | 'SelectV2'
   | 'InputPassword'
   | 'Editor'
-  | 'WsProductInput'
-  | 'WsDepotBatchnoInput'
-  | 'WsVendorInput'
-
+  | WsComponentName
 export type ColProps = {
   span?: number
   xs?: number

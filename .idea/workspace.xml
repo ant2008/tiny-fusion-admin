@@ -4,12 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b08f89a-95c8-40e7-82a6-a9c6d54a1b78" name="更改" comment="1. update vxe-table version 2.finish code genenrate page 3.fix some bug">
+    <list default="true" id="6b08f89a-95c8-40e7-82a6-a9c6d54a1b78" name="更改" comment="1. add column autocodeTableType 2.add zipcode button.">
+      <change afterPath="$PROJECT_DIR$/src/wscore/components/WsAutoCodeChildTableInput/WsAutoCodeChildTableInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/components/WsAutoCodeChildTableInput/WsAutoCodeChildTableInputData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/modal/AutoCodeChildTableModal/AutoCodeChildTableData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/modal/AutoCodeChildTableModal/AutoCodeChildTableModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/types/wscomponentMap.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/types/wscomponentName.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/wscore/utils/DownloadHelper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locales/zh-CN.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/zh-CN.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/componentMap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/componentMap.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/components.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/sys/glAutoCode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/Table/WsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsQuickQueryInput/WsQuickQueryInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsQuickQueryInput/WsQuickQueryInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsUserInput/WsUserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsUserInput/WsUserInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsVendorInput/WsVendorInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsVendorInput/WsVendorInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsQuickQueryTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsQuickQueryTable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/modal/AutoCodeTableModal/AutoCodeTableModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/modal/AutoCodeTableModal/AutoCodeTableModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/modal/QueryModal/QueryModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/modal/QueryModal/QueryModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoods.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoodsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoodsData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCode.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeTabForm.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +129,9 @@
       <workItem from="1695437072357" duration="567000" />
       <workItem from="1695521045061" duration="3267000" />
       <workItem from="1698482933482" duration="1431000" />
+      <workItem from="1698499709499" duration="7614000" />
+      <workItem from="1699084733989" duration="21020000" />
+      <workItem from="1699109146908" duration="4824000" />
     </task>
     <task id="LOCAL-00001" summary="init push">
       <created>1682065091219</created>
@@ -155,16 +177,19 @@
       <option name="project" value="LOCAL" />
       <updated>1694787822447</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="1. add column autocodeTableType 2.add zipcode button.">
+      <option name="closed" value="true" />
+      <created>1698499905539</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698499905539</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/src/wscore/api/sys/glAutocode.d.ts" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -185,6 +210,7 @@
     <MESSAGE value="1.add generate code page 2.fix toolbar bug 3.fix permission bug" />
     <MESSAGE value="1、add autocode page  2、add tpltable page 3、fix wstable bug 4、fix WsEditForm bug 5、fix api bug" />
     <MESSAGE value="1. update vxe-table version 2.finish code genenrate page 3.fix some bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. update vxe-table version 2.finish code genenrate page 3.fix some bug" />
+    <MESSAGE value="1. add column autocodeTableType 2.add zipcode button." />
+    <option name="LAST_COMMIT_MESSAGE" value="1. add column autocodeTableType 2.add zipcode button." />
   </component>
 </project>

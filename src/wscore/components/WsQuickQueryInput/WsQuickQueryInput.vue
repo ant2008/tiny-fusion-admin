@@ -46,6 +46,7 @@ export default defineComponent({
       default: () => []
     },
     funcNo: propTypes.string.def(''),
+    //这个itemKey一般需要为retData中的字段，不然容易出现不一致的数据情况
     itemKey: propTypes.string.def('')
   },
   emits: ['ev-item-return', 'update:modelValue'],

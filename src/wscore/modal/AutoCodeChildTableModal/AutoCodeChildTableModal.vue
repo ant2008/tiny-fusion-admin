@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: 'AutoCodeTableModal'
+  name: 'AutoCodeChildTableModal'
 }
 </script>
 <script setup lang="ts">
@@ -14,7 +14,7 @@ import { StockBatchnoRequest, TbStockD } from '@/wscore/api/stock/stockType'
 import { ListStockBatchnoApi } from '@/wscore/api/stock/stockApi'
 import { useWsTable } from '@/wscore/hook/useWsTable'
 import { TplTableListQuery } from '@/wscore/api/sys/glTplColumnsApi'
-import { ListTables } from '@/wscore/api/sys/glAutoCode'
+import { ListChildTables } from '@/wscore/api/sys/glAutoCode'
 
 const thsCp = getCurrentInstance()
 
@@ -43,7 +43,7 @@ let currRow = {}
 let searchValue = ref('')
 
 const tableConfig = {
-  pageQuery: ListTables,
+  pageQuery: ListChildTables,
   response: {
     list: 'data',
     total: 'total'
@@ -126,7 +126,7 @@ defineExpose({
 
 <template>
   <el-dialog
-    title="查询窗口"
+    title="子表查询窗口"
     width="900px"
     :close-on-click-modal="false"
     v-model="modalShow"

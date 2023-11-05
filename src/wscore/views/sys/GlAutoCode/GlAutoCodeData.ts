@@ -186,7 +186,7 @@ export const showColumns = reactive<TableColumn[]>([
 
   {
     field: 'action',
-    minWidth: 160,
+    minWidth: 220,
     fixed: 'right',
     label: t('tableDemo.action')
   }
@@ -314,13 +314,17 @@ export const editSchema_Basic: FormSchema[] = [
   {
     field: 'autocodeDtlTableName',
     label: t('wsModule.autocodeDtlTableName'),
-    component: 'Input',
+    component: 'WsAutoCodeChildTableInput',
     colProps: {
       span: 12
     },
     componentProps: {
       readonly: false,
-      rules: [{ required: true, message: '明细表名称不能为空!', trigger: 'blur' }]
+      rules: [{ required: true, message: '明细表名称不能为空!', trigger: 'blur' }],
+      onEvItemReturn: (itemName, itemValue, retData) => {
+        //这个机制是这个地方抛出事件，主页面中再捕获。
+        emitter.emit('ev-item-return', { itemName, itemValue, retData })
+      }
     }
   },
   {

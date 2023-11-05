@@ -23,11 +23,15 @@ export const MAutoCodePageQuery = (params: any): Promise<IResponse> => {
   })
 }
 
-export const ListTables = (): Promise<IResponse> => {
+export const ListTables = (parmasObj: any): Promise<IResponse> => {
   const sUrl = '/GlAutoCode/ListTables'
+  //debug
+  console.log('listables paramObj', parmasObj, parmasObj.params.formDatas['tableStr'])
+
   return getUseToken({
     url: sUrl,
-    headersType: 'application/x-www-form-urlencoded'
+    headersType: 'application/x-www-form-urlencoded',
+    params: { tableName: parmasObj.params.formDatas['tableStr'] }
   })
 }
 
@@ -126,7 +130,23 @@ export const ZipCode = (idx: number): Promise<IResponse> => {
   return postUseToken({
     url: sUrl,
     method: 'post',
+    responseType: 'blob',
     headersType: 'application/x-www-form-urlencoded',
     data: paramRequest
+  })
+}
+
+/**
+ * 查询子表
+ * @param parmasObj
+ * @constructor
+ */
+export const ListChildTables = (parmasObj: any): Promise<IResponse> => {
+  const sUrl = '/GlAutoCode/ListChildTables'
+
+  return getUseToken({
+    url: sUrl,
+    headersType: 'application/x-www-form-urlencoded',
+    params: { tableName: parmasObj.params.formDatas['tableStr'] }
   })
 }

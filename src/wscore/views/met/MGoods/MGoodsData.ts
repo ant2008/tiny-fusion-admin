@@ -296,10 +296,10 @@ export const editSchema: FormSchema[] = [
     label: t('wsModule.vendorId'),
     component: 'WsVendorInput',
     componentProps: {
-      // onEvItemReturn: (itemName, itemValue, retData) => {
-      //   //这个机制是这个地方抛出事件，主页面中再捕获。
-      //   emitter.emit('ev-item-return', { itemName, itemValue, retData })
-      // }
+      onEvItemReturn: (itemName, itemValue, retData) => {
+        //这个机制是这个地方抛出事件，主页面中再捕获。
+        emitter.emit('ev-item-return', { itemName, itemValue, retData })
+      }
     }
   },
   {

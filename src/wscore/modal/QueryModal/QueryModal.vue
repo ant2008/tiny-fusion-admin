@@ -59,6 +59,9 @@
         :radio-config="{
           highlight: true
         }"
+        :tool-config="{
+          zIndex: 9999
+        }"
         @register="quickTableRegister"
         @current-chagne="doCurrentChange"
         :radio-selection="radioSelection"

@@ -21,9 +21,8 @@ import {
 import { InputPassword } from '@/components/InputPassword'
 import { Editor } from '@/components/Editor'
 import { ComponentName } from '@/types/components'
-import WsProductInput from '@/wscore/components/WsProductInput/WsProductInput.vue'
-import WsDepotBatchnoInput from '@/wscore/components/WsDepotBatchnoInput/WsDepotBatchnoInput.vue'
-import WsVendorInput from '@/wscore/components/WsVendorInput/WsVendorInput.vue'
+//加入wscore独有的类型
+import { wscomponentMap } from '@/wscore/types/wscomponentMap'
 
 const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadioGroup,
@@ -47,9 +46,7 @@ const componentMap: Recordable<Component, ComponentName> = {
   RadioButton: ElRadioGroup,
   InputPassword: InputPassword,
   Editor: Editor,
-  WsProductInput: WsProductInput,
-  WsDepotBatchnoInput: WsDepotBatchnoInput,
-  WsVendorInput: WsVendorInput
+  ...wscomponentMap
 }
 
 export { componentMap }
