@@ -3,7 +3,6 @@ import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import WindiCSS from 'vite-plugin-windicss'
 import progress from 'vite-plugin-progress'
 import EslintPlugin from 'vite-plugin-eslint'
 import { ViteEjsPlugin } from "vite-plugin-ejs"
@@ -11,8 +10,8 @@ import { viteMockServe } from 'vite-plugin-mock'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import DefineOptions from "unplugin-vue-define-options/vite"
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -32,9 +31,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     base: env.VITE_BASE_PATH,
     plugins: [
-      Vue(),
+      Vue({
+        script: {
+          // 开启defineModel
+          defineModel: true
+        }
+      }),
       VueJsx(),
-      WindiCSS(),
       progress(),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
@@ -42,7 +45,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           libraryName: 'element-plus',
           esModule: true,
           resolveStyle: (name) => {
-            return `element-plus/es/components/${name.substring(3)}/style/css`
+            if (name === 'click-outside') {
+              return ''
+            }
+            return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
           }
         }]
       }),
@@ -72,10 +78,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           setupProdMockServer()
           `
       }),
-      DefineOptions(),
       ViteEjsPlugin({
         title: env.VITE_APP_TITLE
-      })
+      }),
+      UnoCSS(),
+      // sveltekit(),
     ],
 
     css: {
@@ -112,8 +119,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }
     },
     server: {
-      port:4453,
-      open:true,
+      port: 4453,
+      open: true,
       proxy: {
         // 选项写法
         '/api': {
@@ -143,10 +150,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'qs',
         'echarts',
         'echarts-wordcloud',
-        'intro.js',
         'qrcode',
         '@wangeditor/editor',
-        '@wangeditor/editor-for-vue'
+        '@wangeditor/editor-for-vue',
+        'vue-json-pretty',
+        '@zxcvbn-ts/core',
+        'dayjs',
+        'mockjs'
       ]
     }
   }

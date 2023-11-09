@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { editSchema_Basic, editSchema_Colset } from '@/wscore/views/sys/GlAutoCode/GlAutoCodeData'
 import { useI18n } from '@/hooks/web/useI18n'
-import { computed, getCurrentInstance, nextTick, onMounted, PropType, ref, unref } from 'vue'
+import { computed, getCurrentInstance, nextTick, onMounted, ref, unref } from 'vue'
 import { MAutoCodePageQuery, SaveAutoCodeAll } from '@/wscore/api/sys/glAutoCode'
 import { useWsTable } from '@/wscore/hook/useWsTable'
-import { useWsToolBar } from '@/wscore/hook/useWsToolBar'
 import WsEditForm from '@/wscore/components/WsEditForm/WsEditForm.vue'
 import { useWsEditForm } from '@/wscore/hook/useWsEditForm'
 import {
@@ -14,19 +13,14 @@ import {
   ElDivider,
   ElInput,
   ElSwitch,
-  ElSelect,
-  ElOption,
   ElMessageBox
 } from 'element-plus'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
 import { propTypes } from '@/utils/propTypes'
-import { TableColumn } from '@/types/table'
 import { getSyscodeSelect, getTopSysCodeDictsSelect } from '@/wscore/utils/WsDictHelper'
 import { any } from 'vue-types'
 import { handleDataVxeRowKey, handleTableArraysVxeRowKey } from '@/wscore/utils/WsVxeHelper'
 import { AllAutoCommitRequest } from '@/wscore/api/sys/glAutocodetype'
-import { FormOpera } from '@/wscore/api/base/base'
-import WsAutoCodeChildTableInput from '@/wscore/components/WsAutoCodeChildTableInput/WsAutoCodeChildTableInput.vue'
 
 //===========多语言及当前page级变量=================
 const { t } = useI18n()

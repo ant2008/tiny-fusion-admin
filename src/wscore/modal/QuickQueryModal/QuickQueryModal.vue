@@ -15,7 +15,7 @@ import { defineComponent, getCurrentInstance, onMounted, PropType, ref, unref } 
 import QueryModal from '@/wscore/modal/QueryModal/QueryModal.vue'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import { propTypes } from '@/utils/propTypes'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table'
 
 export default defineComponent({
   name: 'QuickQueryModal',

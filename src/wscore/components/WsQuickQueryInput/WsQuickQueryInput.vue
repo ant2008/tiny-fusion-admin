@@ -31,7 +31,7 @@ import { ElButton, ElIcon, ElInput } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import QuickQueryModal from '@/wscore/modal/QuickQueryModal/QuickQueryModal.vue'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table/'
 import { Search } from '@element-plus/icons-vue'
 export default defineComponent({
   name: 'WsQuickQueryInput',

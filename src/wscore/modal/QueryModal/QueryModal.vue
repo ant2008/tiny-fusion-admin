@@ -1,6 +1,5 @@
 <template>
   <ElDialog
-    title="查询窗口"
     width="900px"
     :close-on-click-modal="false"
     v-model="modalShow"
@@ -14,6 +13,11 @@
     <template #footer>
       <ElButton size="default" @click="doSearchCancel">取消</ElButton>
       <ElButton type="primary" size="default" @click="doSearchOk">确定</ElButton>
+    </template>
+    <template #header>
+      <div class="modal-header">
+        <div>查询窗口</div>
+      </div>
     </template>
 
     <ContentWrap>
@@ -38,7 +42,7 @@
         </ElFormItem>
 
         <ElFormItem>
-          <ElButton @click="doSearch" type="primary" :icon="Search">搜索</ElButton>
+          <ElButton @click="doSearch" type="primary">搜索</ElButton>
         </ElFormItem>
       </ElForm>
       <WsTable
@@ -80,8 +84,8 @@ import { ContentWrap } from '@/components/ContentWrap'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
 import { useWsQickQueryTable } from '@/wscore/hook/useWsQuickQueryTable'
 import { quickQueryApi } from '@/wscore/api/base/base'
-import { Search } from '@element-plus/icons-vue'
-import { TableColumn } from '@/types/table'
+// import { Search } from '@element-plus/icons-vue'
+import { TableColumn } from '@/components/Table'
 export default defineComponent({
   name: 'QueryModal',
   components: {
@@ -195,7 +199,6 @@ export default defineComponent({
     })
 
     return {
-      Search,
       searchValue,
       modalShow,
       doOpen,
@@ -230,5 +233,12 @@ export default defineComponent({
 
 .jquerymodal-formitem-label {
   width: 500px;
+}
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-top: 15px;
 }
 </style>

@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
 import { asyncRouterMap, constantRouterMap } from '@/router'
-import { generateRoutesFn1, generateRoutesFn2, flatMultiLevelRoutes } from '@/utils/routerHelper'
+import {
+  generateRoutesByFrontEnd,
+  generateRoutesByServer,
+  flatMultiLevelRoutes,
+  generateRoutesFn2
+} from '@/utils/routerHelper'
 import { store } from '../index'
 import { cloneDeep } from 'lodash-es'
 
@@ -46,19 +51,22 @@ export const usePermissionStore = defineStore('permission', {
     }
   },
   actions: {
-    //暂时保留对类型的判断,但后续需要处理。 w.li 2023-04-02
     generateRoutes(
-      type: 'admin' | 'test' | 'none',
+      type: 'server' | 'frontEnd' | 'static' | 'admin',
       routers?: AppCustomRouteRecordRaw[] | string[]
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
         let routerMap: AppRouteRecordRaw[] = []
-        if (type === 'admin') {
+        if (type === 'server') {
+          // 模拟后端过滤菜单
+          routerMap = generateRoutesByServer(routers as AppCustomRouteRecordRaw[])
+        } else if (type === 'admin') {
+          //add wscode need. 2023-11-05
           // 模拟后端过滤菜单
           routerMap = generateRoutesFn2(routers as AppCustomRouteRecordRaw[])
-        } else if (type === 'test') {
+        } else if (type === 'frontEnd') {
           // 模拟前端过滤菜单
-          routerMap = generateRoutesFn1(cloneDeep(asyncRouterMap), routers as string[])
+          routerMap = generateRoutesByFrontEnd(cloneDeep(asyncRouterMap), routers as string[])
         } else {
           // 直接读取静态路由表
           routerMap = cloneDeep(asyncRouterMap)

@@ -5,6 +5,7 @@ import {
   FormItemProps,
   FormValueType
 } from '@ty/componentType/form'
+import { WsComponentName } from '@/wscore/types/wscomponentName'
 
 declare type WsFormSearchSchema = {
   // 唯一值
@@ -20,11 +21,16 @@ declare type WsFormSearchSchema = {
   // formItem组件属性
   formItemProps?: FormItemProps
   // 渲染的组件
-  component?: ComponentName
+  component?: ComponentName | WsComponentName
   // 初始值
   value?: FormValueType
   // 是否隐藏
   hidden?: boolean
+  /**
+   * @returns 远程加载下拉项
+   */
+  optionApi?: any
+  //TO WSCORE
   //字段查询条件
   fieldOp?: string
   //字段关系
@@ -47,3 +53,12 @@ declare type WsResultObj = {
   total: number
   list: any
 }
+
+// export interface FormProps extends Partial<ElFormProps> {
+//   schema?: FormSchema[]
+//   isCol?: boolean
+//   model?: Recordable
+//   autoSetPlaceholder?: boolean
+//   isCustom?: boolean
+//   [key: string]: any
+// }

@@ -1,6 +1,5 @@
 <template>
   <ElDialog
-    :title="titleName"
     width="900px"
     :close-on-click-modal="false"
     v-model="modalShow"
@@ -9,6 +8,12 @@
     :destroy-on-close="true"
     :draggable="true"
   >
+    <template #header>
+      <div class="modal-header">
+        <div>{{ titleName }}</div>
+      </div>
+    </template>
+
     <template #footer>
       <ElButton size="default" @click="doCancel">取消</ElButton>
       <ElButton type="primary" size="default" @click="doOk">确定</ElButton>
@@ -51,8 +56,8 @@ import { FormProps } from '@/components/Form/src/types'
 import { FormOpera } from '@/wscore/api/base/base'
 import { useI18n } from 'vue-i18n'
 import { useWsForm } from '@/wscore/hook/useWsForm'
-import { FormSchema, FormSetPropsType } from '@/types/form'
-import { useEmitt } from '@/hooks/web/useEmitt'
+import { FormSchema, FormSetProps } from '@/components/Form/src/types'
+import { useEmitt } from '@/hooks/event/useEmitt'
 
 export default defineComponent({
   name: 'WsModalForm',
@@ -168,7 +173,7 @@ export default defineComponent({
       methods.addSchema(formSchema, index)
     }
 
-    const setSchema = (schemaProps: FormSetPropsType[]) => {
+    const setSchema = (schemaProps: FormSetProps[]) => {
       methods.setSchema(schemaProps)
     }
 
@@ -227,4 +232,12 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-top: 15px;
+}
+</style>

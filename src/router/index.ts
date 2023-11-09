@@ -156,14 +156,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: 'UseForm'
             }
-          },
-          {
-            path: 'ref-form',
-            component: () => import('@/views/Components/Form/RefForm.vue'),
-            name: 'RefForm',
-            meta: {
-              title: 'RefForm'
-            }
           }
         ]
       },
@@ -194,11 +186,19 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             }
           },
           {
-            path: 'ref-table',
-            component: () => import('@/views/Components/Table/RefTable.vue'),
-            name: 'RefTable',
+            path: 'tree-table',
+            component: () => import('@/views/Components/Table/TreeTable.vue'),
+            name: 'TreeTable',
             meta: {
-              title: 'RefTable'
+              title: t('router.treeTable')
+            }
+          },
+          {
+            path: 'table-image-preview',
+            component: () => import('@/views/Components/Table/TableImagePreview.vue'),
+            name: 'TableImagePreview',
+            meta: {
+              title: t('router.PicturePreview')
             }
           }
         ]
@@ -219,6 +219,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             name: 'Editor',
             meta: {
               title: t('router.richText')
+            }
+          },
+          {
+            path: 'json-editor',
+            component: () => import('@/views/Components/Editor/JsonEditor.vue'),
+            name: 'JsonEditor',
+            meta: {
+              title: t('router.jsonEditor')
             }
           }
         ]
@@ -261,6 +269,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Icon',
         meta: {
           title: t('router.icon')
+        }
+      },
+      {
+        path: 'icon-picker',
+        component: () => import('@/views/Components/IconPicker.vue'),
+        name: 'IconPicker',
+        meta: {
+          title: t('router.iconPicker')
         }
       },
       {
@@ -312,11 +328,60 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
-        path: 'sticky',
-        component: () => import('@/views/Components/Sticky.vue'),
-        name: 'Sticky',
+        path: 'waterfall',
+        component: () => import('@/views/Components/Waterfall.vue'),
+        name: 'waterfall',
         meta: {
-          title: t('router.sticky')
+          title: t('router.waterfall')
+        }
+      }
+    ]
+  },
+  {
+    path: '/function',
+    component: Layout,
+    redirect: '/function/multipleTabs',
+    name: 'Function',
+    meta: {
+      title: t('router.function'),
+      icon: 'ri:function-fill',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'multiple-tabs',
+        component: () => import('@/views/Function/MultipleTabs.vue'),
+        name: 'MultipleTabs',
+        meta: {
+          title: t('router.multipleTabs')
+        }
+      },
+      {
+        path: 'multiple-tabs-demo/:id',
+        component: () => import('@/views/Function/MultipleTabsDemo.vue'),
+        name: 'MultipleTabsDemo',
+        meta: {
+          hidden: true,
+          title: t('router.details'),
+          canTo: true,
+          activeMenu: '/function/multiple-tabs'
+        }
+      },
+      {
+        path: 'request',
+        component: () => import('@/views/Function/Request.vue'),
+        name: 'Request',
+        meta: {
+          title: t('router.request')
+        }
+      },
+      {
+        path: 'test',
+        component: () => import('@/views/Function/Test.vue'),
+        name: 'Test',
+        meta: {
+          title: t('router.permission'),
+          permission: ['add', 'edit', 'delete']
         }
       }
     ]
@@ -341,11 +406,43 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: 'useTagsView',
+        component: () => import('@/views/hooks/useTagsView.vue'),
+        name: 'UseTagsView',
+        meta: {
+          title: 'useTagsView'
+        }
+      },
+      {
+        path: 'useValidator',
+        component: () => import('@/views/hooks/useValidator.vue'),
+        name: 'UseValidator',
+        meta: {
+          title: 'useValidator'
+        }
+      },
+      {
         path: 'useCrudSchemas',
         component: () => import('@/views/hooks/useCrudSchemas.vue'),
         name: 'UseCrudSchemas',
         meta: {
           title: 'useCrudSchemas'
+        }
+      },
+      {
+        path: 'useClipboard',
+        component: () => import('@/views/hooks/useClipboard.vue'),
+        name: 'UseClipboard',
+        meta: {
+          title: 'useClipboard'
+        }
+      },
+      {
+        path: 'useNetwork',
+        component: () => import('@/views/hooks/useNetwork.vue'),
+        name: 'UseNetwork',
+        meta: {
+          title: 'useNetwork'
         }
       }
     ]
@@ -513,36 +610,52 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/authorization',
+    component: Layout,
+    redirect: '/authorization/user',
+    name: 'Authorization',
+    meta: {
+      title: t('router.authorization'),
+      icon: 'eos-icons:role-binding',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'department',
+        component: () => import('@/views/Authorization/Department/Department.vue'),
+        name: 'Department',
+        meta: {
+          title: t('router.department')
+        }
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/Authorization/User/User.vue'),
+        name: 'User',
+        meta: {
+          title: t('router.user')
+        }
+      },
+      {
+        path: 'menu',
+        component: () => import('@/views/Authorization/Menu/Menu.vue'),
+        name: 'Menu',
+        meta: {
+          title: t('router.menuManagement')
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/Authorization/Role/Role.vue'),
+        name: 'Role',
+        meta: {
+          title: t('router.role')
+        }
+      }
+    ]
   }
-  // {
-  //   path: '/authorization',
-  //   component: Layout,
-  //   redirect: '/authorization/user',
-  //   name: 'Authorization',
-  //   meta: {
-  //     title: t('router.authorization'),
-  //     icon: 'eos-icons:role-binding',
-  //     alwaysShow: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'user',
-  //       component: () => import('@/views/Authorization/User.vue'),
-  //       name: 'User',
-  //       meta: {
-  //         title: t('router.user')
-  //       }
-  //     },
-  //     {
-  //       path: 'role',
-  //       component: () => import('@/views/Authorization/Role.vue'),
-  //       name: 'Role',
-  //       meta: {
-  //         title: t('router.role')
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 
 const router = createRouter({

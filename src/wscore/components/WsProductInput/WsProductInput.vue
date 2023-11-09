@@ -26,13 +26,13 @@
 <script lang="ts">
 import { defineComponent, getCurrentInstance, nextTick, ref, unref, useAttrs, watch } from 'vue'
 import { propTypes } from '@/utils/propTypes'
-import { ElInput, ElButton, ElIcon } from 'element-plus'
+import { ElInput, ElButton } from 'element-plus'
 import ProductModal from '@/wscore/modal/ProductModal/ProductModal.vue'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import { Search } from '@element-plus/icons-vue'
 export default defineComponent({
   name: 'WsProductInput',
-  components: { Search, ProductModal, ElInput, ElButton, ElIcon },
+  components: { ProductModal, ElInput, ElButton, Search },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),

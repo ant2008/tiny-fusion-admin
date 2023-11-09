@@ -7,9 +7,9 @@ import {
   renderSysCodeDict,
   renderTopSysCodeDict
 } from '@/wscore/utils/RenderHelper'
-import { TableColumn } from '@/types/table'
-import { FormSchema } from '@/types/form'
-import { useEmitt } from '@/hooks/web/useEmitt'
+import { TableColumn } from '@/components/Table'
+import { FormSchema } from '@/components/Form'
+import { useEmitt } from '@/hooks/event/useEmitt'
 
 const { t } = useI18n()
 

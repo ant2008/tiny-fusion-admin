@@ -1,7 +1,7 @@
-import { config } from '@/config/axios/config'
+import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 
-const { result_code } = config
+const { code } = config
 
 const timeout = 1000
 
@@ -13,7 +13,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: {
           project: 40,
           access: 2340,
@@ -29,7 +29,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           {
             name: 'Github',
@@ -84,7 +84,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           {
             keys: ['workplace.push', 'Github'],
@@ -121,7 +121,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           {
             name: 'Github',
@@ -158,7 +158,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           { name: 'workplace.quote', max: 65, personal: 42, team: 50 },
           { name: 'workplace.contribution', max: 160, personal: 30, team: 140 },

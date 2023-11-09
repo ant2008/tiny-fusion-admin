@@ -40,11 +40,11 @@ import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import WsEditForm from '@/wscore/components/WsEditForm/WsEditForm.vue'
 import { set } from 'lodash-es'
 import { Search } from '@element-plus/icons-vue'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table'
 
 export default defineComponent({
   name: 'WsDepotBatchnoInput',
-  components: { BatchnoQueryModal, ElInput, ElButton, Search, ElIcon },
+  components: { BatchnoQueryModal, ElInput, ElButton, ElIcon, Search },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),

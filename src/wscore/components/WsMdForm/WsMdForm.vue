@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { defineComponent, getCurrentInstance, onMounted, PropType, ref, Slots, unref } from 'vue'
-import { FormSchema, FormSetPropsType } from '@/types/form'
+import { FormSchema, FormSetProps } from '@/components/Form/src/types'
 import { propTypes } from '@/utils/propTypes'
 import WsForm from '@/wscore/components/WsForm/WsForm.vue'
 import { ContentWrap } from '@/components/ContentWrap'
@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n'
 import { ElTabs, ElTabPane, ElButton, ElDivider, ElMessageBox } from 'element-plus'
 // import { Toolbar as VxeToolbar, VxeButtonEvents, VxeTableInstance } from 'vxe-table'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
-import { TableColumn, TableSlotDefault } from '@/types/table'
+import { TableColumn, TableSlotDefault } from '@/components/Table'
 import { useWsTable } from '@/wscore/hook/useWsTable'
 import { useWsForm } from '@/wscore/hook/useWsForm'
 import { FormProps } from '@/components/Form/src/types'
@@ -89,7 +89,7 @@ export default defineComponent({
       formMethods.addSchema(formSchema, index)
     }
 
-    const setSchema = (schemaProps: FormSetPropsType[]) => {
+    const setSchema = (schemaProps: FormSetProps[]) => {
       formMethods.setSchema(schemaProps)
     }
 

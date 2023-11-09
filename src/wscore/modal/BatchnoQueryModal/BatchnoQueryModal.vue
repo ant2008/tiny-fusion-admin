@@ -61,7 +61,7 @@ import { propTypes } from '@/utils/propTypes'
 import { StockBatchnoRequest, TbStockD } from '@/wscore/api/stock/stockType'
 import { useWsTable } from '@/wscore/hook/useWsTable'
 import { ListStockBatchnoApi } from '@/wscore/api/stock/stockApi'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table'
 
 export default defineComponent({
   name: 'BatchnoQueryModal',

@@ -29,10 +29,9 @@ import { propTypes } from '@/utils/propTypes'
 import { ElInput, ElButton, ElIcon } from 'element-plus'
 import ProductModal from '@/wscore/modal/ProductModal/ProductModal.vue'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
-import { Search } from '@element-plus/icons-vue'
 export default defineComponent({
   name: 'WVxeProductInput',
-  components: { Search, ProductModal, ElButton, ElIcon },
+  components: { ProductModal, ElButton, ElIcon },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),

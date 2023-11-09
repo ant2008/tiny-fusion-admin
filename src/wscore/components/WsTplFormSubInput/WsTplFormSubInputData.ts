@@ -2,7 +2,7 @@
 import { reactive, unref } from 'vue'
 import { renderSysCodeDict } from '@/wscore/utils/RenderHelper'
 import { useI18n } from '@/hooks/web/useI18n'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table'
 
 const { t } = useI18n()
 

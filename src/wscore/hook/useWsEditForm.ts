@@ -6,7 +6,7 @@ import WsEditForm from '@/wscore/components/WsEditForm/WsEditForm.vue'
 import { WsEditFormProp, WsFormExpose } from '@/wscore/components/WsEditForm/WsEditFormType'
 import { addPost, FormOpera, initAdd, modPost } from '@/wscore/api/base/base'
 import { CommitPostRequest } from '@/wscore/api/base/basetype'
-import { FormSchema, FormSetPropsType } from '@/types/form'
+import { FormSchema, FormSetProps } from '@/components/Form'
 
 export const useWsEditForm = (props?: WsEditFormProp) => {
   // From实例
@@ -50,7 +50,7 @@ export const useWsEditForm = (props?: WsEditFormProp) => {
     setProps: (props: Recordable) => void
     setValues: (data: Recordable) => void
     getFormData: <T = Recordable | undefined>() => Promise<T>
-    setSchema: (schemaProps: FormSetPropsType[]) => void
+    setSchema: (schemaProps: FormSetProps[]) => void
     addSchema: (formSchema: FormSchema, index?: number) => void
     delSchema: (field: string) => void
     getFormSchemaDatas: <T = Recordable | undefined>() => Promise<T>
@@ -78,7 +78,7 @@ export const useWsEditForm = (props?: WsEditFormProp) => {
     /**
      * @param schemaProps 需要设置的schemaProps
      */
-    setSchema: async (schemaProps: FormSetPropsType[]) => {
+    setSchema: async (schemaProps: FormSetProps[]) => {
       const form = await getForm()
       form?.exposed.setSchema(schemaProps)
     },

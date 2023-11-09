@@ -5,7 +5,7 @@ import { TableProps } from '@/components/Table/src/types'
 import { set } from 'lodash-es'
 import { VXETable } from 'vxe-table'
 import { getSlot } from '@/utils/tsxHelper'
-import { Pagination, TableColumn, TableSetPropsType, TableSlotDefault } from '@/types/table'
+import { Pagination, TableColumn, TableSetProps, TableSlotDefault } from '@/components/Table'
 
 export default defineComponent({
   name: 'WsTable',
@@ -79,7 +79,7 @@ export default defineComponent({
       outsideProps.value = props
     }
 
-    const setColumn = (columnProps: TableSetPropsType[], columnsChildren?: TableColumn[]) => {
+    const setColumn = (columnProps: TableSetProps[], columnsChildren?: TableColumn[]) => {
       const { columns } = unref(getProps)
       for (const v of columnsChildren || columns) {
         for (const item of columnProps) {

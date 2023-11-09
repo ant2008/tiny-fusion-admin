@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   plugins: ['stylelint-order'],
   customSyntax: 'postcss-html',
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  extends: ['stylelint-config-standard'],
   rules: {
     'selector-pseudo-class-no-unknown': [
       true,
@@ -16,6 +16,8 @@ module.exports = {
         ignoreAtRules: ['function', 'if', 'each', 'include', 'mixin']
       }
     ],
+    'media-query-no-invalid': null,
+    'function-no-unknown': null,
     'no-empty-source': null,
     'named-grid-areas-no-invalid': null,
     'unicode-bom': 'never',
@@ -213,6 +215,8 @@ module.exports = {
       extends: ['stylelint-config-recommended', 'stylelint-config-html'],
       rules: {
         'keyframes-name-pattern': null,
+        'selector-class-pattern': null,
+        'no-duplicate-selectors': null,
         'selector-pseudo-class-no-unknown': [
           true,
           {

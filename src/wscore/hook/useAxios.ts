@@ -1,8 +1,7 @@
-import { service } from '@/config/axios/service'
-import { config } from '@/config/axios/config'
+import service from '@/config/axios/service'
+import {} from '@/config/axios/index'
 import { useAppStore } from '@/store/modules/app'
-
-const { default_headers } = config
+import config from '@/config/axios/config'
 
 // const request = (option: any) => {
 //   const { url, method, params, data, headersType, responseType } = option
@@ -21,14 +20,14 @@ const { default_headers } = config
 export const useAxios = () => {
   const request = (option: any) => {
     const { url, method, params, data, headersType, responseType } = option
-    return service({
+    return service.request({
       url: url,
       method,
       params,
       data,
       responseType: responseType,
       headers: {
-        'Content-Type': headersType || default_headers
+        'Content-Type': headersType || config.defaultHeaders
       }
     })
   }
@@ -74,14 +73,14 @@ export const useAxiosToken = () => {
     const { url, method, params, data, headersType, responseType } = option
     const appStore = useAppStore()
 
-    return service({
+    return service.request({
       url: url,
       method,
       params,
       data,
       responseType: responseType,
       headers: {
-        'Content-Type': headersType || default_headers,
+        'Content-Type': headersType || config.defaultHeaders,
         Authorization: appStore.getToken //待处理token
       }
     })

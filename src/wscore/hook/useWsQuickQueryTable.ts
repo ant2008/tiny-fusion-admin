@@ -7,7 +7,7 @@ import { TableExpose } from '@/components/Table'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
 import VXETable from 'vxe-table'
 import { QuickQueryRequest } from '@/wscore/api/base/basetype'
-import { TableSetPropsType } from '@/types/table'
+import { TableSetProps } from '@/components/Table'
 
 // const { t } = useI18n()
 
@@ -110,7 +110,7 @@ export const useWsQickQueryTable = <T>(config?: UseQuickTableConfig<T>) => {
   }
   const methods: {
     setProps: (props: Recordable) => void
-    setColumn: (columnProps: TableSetPropsType[]) => void
+    setColumn: (columnProps: TableSetProps[]) => void
     setSearchParmas: (data: string) => void
     getSelections: () => Promise<T[]>
     getQuickList: () => Promise<void>
@@ -119,7 +119,7 @@ export const useWsQickQueryTable = <T>(config?: UseQuickTableConfig<T>) => {
       const table = await getTable()
       table?.setProps(props)
     },
-    setColumn: async (columnProps: TableSetPropsType[]) => {
+    setColumn: async (columnProps: TableSetProps[]) => {
       const table = await getTable()
       table?.setColumn(columnProps)
     },

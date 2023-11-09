@@ -1,18 +1,17 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { reactive, ref, unref, watch } from 'vue'
-import { Form } from '@/components/Form'
+import { Form, FormSchema } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
-import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
-import { UserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
-import { FormSchema } from '@/types/form'
+import { Icon } from '@/components/Icon'
+
 //引入wscore
 import { userLogin } from '@/wscore/api/login/login'
 import { UserLoginDto, WsUserLoginType } from '@/wscore/api/login/logintype'
@@ -39,25 +38,33 @@ const permissionStore = usePermissionStore()
 
 const { currentRoute, addRoute, push } = useRouter()
 
-const { wsCache } = useCache()
+const { setStorage } = useStorage()
 
 const { t } = useI18n()
+
+//add wscore
+const wsStore = useWsStore()
+
+//引入wiser 权限处理
+const wsPermissionStore = useWsPermissionStore()
 
 const rules = {
   username: [required()],
   password: [required()]
 }
 
-const wsStore = useWsStore()
-
-//引入wiser 权限处理
-const wsPermissionStore = useWsPermissionStore()
-
 const schema = reactive<FormSchema[]>([
   {
     field: 'title',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return <h2 class="text-2xl font-bold text-center w-[100%]">{t('login.login')}</h2>
+        }
+      }
     }
   },
   {
@@ -91,12 +98,48 @@ const schema = reactive<FormSchema[]>([
     field: 'tool',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <div class="flex justify-between items-center w-[100%]">
+                <ElCheckbox v-model={remember.value} label={t('login.remember')} size="small" />
+                <ElLink type="primary" underline={false}>
+                  {t('login.forgetPassword')}
+                </ElLink>
+              </div>
+            </>
+          )
+        }
+      }
     }
   },
   {
     field: 'login',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <div class="w-[100%]">
+                <ElButton loading={loading.value} type="primary" class="w-[100%]" onClick={signIn}>
+                  {t('login.login')}
+                </ElButton>
+              </div>
+              <div class="w-[100%] mt-15px">
+                <ElButton class="w-[100%]" onClick={toRegister}>
+                  {t('login.register')}
+                </ElButton>
+              </div>
+            </>
+          )
+        }
+      }
     }
   },
   {
@@ -111,6 +154,46 @@ const schema = reactive<FormSchema[]>([
     field: 'otherIcon',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <div class="flex justify-between w-[100%]">
+                <Icon
+                  icon="ant-design:github-filled"
+                  size={iconSize}
+                  class="cursor-pointer ant-icon"
+                  color={iconColor}
+                  hoverColor={hoverColor}
+                />
+                <Icon
+                  icon="ant-design:wechat-filled"
+                  size={iconSize}
+                  class="cursor-pointer ant-icon"
+                  color={iconColor}
+                  hoverColor={hoverColor}
+                />
+                <Icon
+                  icon="ant-design:alipay-circle-filled"
+                  size={iconSize}
+                  color={iconColor}
+                  hoverColor={hoverColor}
+                  class="cursor-pointer ant-icon"
+                />
+                <Icon
+                  icon="ant-design:weibo-circle-filled"
+                  size={iconSize}
+                  color={iconColor}
+                  hoverColor={hoverColor}
+                  class="cursor-pointer ant-icon"
+                />
+              </div>
+            </>
+          )
+        }
+      }
     }
   }
 ])
@@ -119,11 +202,13 @@ const iconSize = 30
 
 const remember = ref(false)
 
-const { register, elFormRef, methods } = useForm()
+const { formRegister, formMethods } = useForm()
 
 const loading = ref(false)
 
 const iconColor = '#999'
+
+const hoverColor = 'var(--el-color-primary)'
 
 const redirect = ref<string>('')
 
@@ -136,27 +221,25 @@ watch(
     immediate: true
   }
 )
-
+//屏蔽原来的。
 // 登录
-//屏蔽原来的登录代码，切换为符合WS的登录模式。
 // const signIn = async () => {
-//   const formRef = unref(elFormRef)
+//   const formRef = await getElFormExpose()
 //   await formRef?.validate(async (isValid) => {
 //     if (isValid) {
 //       loading.value = true
-//       const { getFormData } = methods
 //       const formData = await getFormData<UserType>()
 //
 //       try {
 //         const res = await loginApi(formData)
 //
 //         if (res) {
-//           wsCache.set(appStore.getUserInfo, res.data)
+//           setStorage(appStore.getUserInfo, res.data)
 //           // 是否使用动态路由
 //           if (appStore.getDynamicRouter) {
 //             getRole()
 //           } else {
-//             await permissionStore.generateRoutes('none').catch(() => {})
+//             await permissionStore.generateRoutes('static').catch(() => {})
 //             permissionStore.getAddRouters.forEach((route) => {
 //               addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
 //             })
@@ -173,23 +256,20 @@ watch(
 
 // 获取角色信息
 // const getRole = async () => {
-//   const { getFormData } = methods
 //   const formData = await getFormData<UserType>()
 //   const params = {
 //     roleName: formData.username
 //   }
-//   // admin - 模拟后端过滤菜单
-//   // test - 模拟前端过滤菜单
 //   const res =
-//     formData.username === 'admin' ? await getAdminRoleApi(params) : await getTestRoleApi(params)
+//     appStore.getDynamicRouter && appStore.getServerDynamicRouter
+//       ? await getAdminRoleApi(params)
+//       : await getTestRoleApi(params)
 //   if (res) {
-//     const { wsCache } = useCache()
 //     const routers = res.data || []
-//     wsCache.set('roleRouters', routers)
-//
-//     formData.username === 'admin'
-//       ? await permissionStore.generateRoutes('admin', routers).catch(() => {})
-//       : await permissionStore.generateRoutes('test', routers).catch(() => {})
+//     setStorage('roleRouters', routers)
+//     appStore.getDynamicRouter && appStore.getServerDynamicRouter
+//       ? await permissionStore.generateRoutes('server', routers).catch(() => {})
+//       : await permissionStore.generateRoutes('frontEnd', routers).catch(() => {})
 //
 //     permissionStore.getAddRouters.forEach((route) => {
 //       addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
@@ -203,69 +283,71 @@ watch(
 const toRegister = () => {
   emit('to-register')
 }
+
 //=============ws code===========
 const signIn = async () => {
-  const formRef = unref(elFormRef)
-  await formRef?.validate(async (isValid) => {
-    if (isValid) {
-      loading.value = true
-      const { getFormData } = methods
-      const formData = await getFormData<WsUserLoginType>()
+  await formMethods.getElFormExpose().then((res) => {
+    const formRef = unref(res)
+    formRef?.validate(async (isValid) => {
+      if (isValid) {
+        loading.value = true
+        const { getFormData } = formMethods
+        const formData = await getFormData<WsUserLoginType>()
 
-      // 更换登录函数
-      let loginType = {
-        aUserId: formData.username,
-        aPwd: formData.password
-      }
-      await userLogin(loginType).then((res) => {
-        //debug
-        console.log('login', loginType, res)
-        if (res) {
-          let userInfo = res.data as UserLoginDto
-          const { wsCache } = useCache()
-          wsCache.set(appStore.getUserInfo, userInfo)
-          appStore.setToken(userInfo.token)
-          //debug
-          console.log('call login end')
-          //替换为服务器的菜单
-          // getRole()
-          buildRouterMenus(userInfo.userId)
-          //set user func rights
-          getFuncRights(userInfo.userId).then((res2) => {
-            const funcRightDtos = res2['dataList']
-            wsPermissionStore.setFuncPermission(funcRightDtos)
-          })
+        // 更换登录函数
+        let loginType = {
+          aUserId: formData.username,
+          aPwd: formData.password
         }
-        loading.value = false
-      })
+        await userLogin(loginType).then((res) => {
+          //debug
+          console.log('login', loginType, res)
+          if (res) {
+            let userInfo = res.data as UserLoginDto
+            setStorage(appStore.getUserInfo, userInfo)
+            appStore.setToken(userInfo.token)
+            //debug
+            console.log('call login end')
+            //替换为服务器的菜单
+            // getRole()
+            buildRouterMenus(userInfo.userId)
+            //set user func rights
+            getFuncRights(userInfo.userId).then((res2) => {
+              const funcRightDtos = res2['dataList']
+              wsPermissionStore.setFuncPermission(funcRightDtos)
+            })
+          }
+          loading.value = false
+        })
 
-      //debug
-      console.log('call login after')
-      //获取所有数据字典
-      const res2 = await GetSysCodeDictMap().catch((err) => {
-        console.error('get server syscode dicts error:' + err.message)
-      })
-      if (res2) {
-        let codeMap: Recordable<String, WsDictType[]> = res2.data
-        wsStore.setSysCodeDicts(codeMap)
-      }
+        //debug
+        console.log('call login after')
+        //获取所有数据字典
+        const res2 = await GetSysCodeDictMap().catch((err) => {
+          console.error('get server syscode dicts error:' + err.message)
+        })
+        if (res2) {
+          let codeMap: Recordable<String, WsDictType[]> = res2.data
+          wsStore.setSysCodeDicts(codeMap)
+        }
 
-      //获取用户和角色
-      const res3 = await GetUserDicts()
-      if (res3) {
-        wsStore.setUserDicts(res3['dataList'])
-      }
+        //获取用户和角色
+        const res3 = await GetUserDicts()
+        if (res3) {
+          wsStore.setUserDicts(res3['dataList'])
+        }
 
-      const res4 = await GetRoleDictMap()
-      if (res4) {
-        wsStore.setRoleDicts(res4['dataList'])
-      }
+        const res4 = await GetRoleDictMap()
+        if (res4) {
+          wsStore.setRoleDicts(res4['dataList'])
+        }
 
-      const res5 = await GetSysCodeTopListDicts()
-      if (res5) {
-        wsStore.setTopSysCodeDits(res5.data)
+        const res5 = await GetSysCodeTopListDicts()
+        if (res5) {
+          wsStore.setTopSysCodeDits(res5.data)
+        }
       }
-    }
+    })
   })
 }
 //此改造成为可以使用ws框架的从服务器获取菜单模式。
@@ -276,7 +358,6 @@ const buildRouterMenus = async (userId: string) => {
   console.log('buildRouterMenus', res)
 
   if (res) {
-    const { wsCache } = useCache()
     const routers: AppCustomRouteRecordRaw[] = res.data || []
 
     //debug
@@ -298,7 +379,7 @@ const buildRouterMenus = async (userId: string) => {
     //debug
     console.log('add wsrootroutermap', routers)
 
-    wsCache.set('roleRouters', routers)
+    setStorage('roleRouters', routers)
 
     await permissionStore.generateRoutes('admin', routers).catch(() => {})
 
@@ -348,67 +429,6 @@ const buildRouterMenus = async (userId: string) => {
     hide-required-asterisk
     size="large"
     class="dark:(border-1 border-[var(--el-border-color)] border-solid)"
-    @register="register"
-  >
-    <template #title>
-      <h2 class="text-2xl font-bold text-center w-[100%]">{{ t('login.login') }}</h2>
-    </template>
-
-    <template #tool>
-      <div class="flex justify-between items-center w-[100%]">
-        <ElCheckbox v-model="remember" :label="t('login.remember')" size="small" />
-        <ElLink type="primary" :underline="false">{{ t('login.forgetPassword') }}</ElLink>
-      </div>
-    </template>
-
-    <template #login>
-      <div class="w-[100%]">
-        <ElButton :loading="loading" type="primary" class="w-[100%]" @click="signIn">
-          {{ t('login.login') }}
-        </ElButton>
-      </div>
-      <div class="w-[100%] mt-15px">
-        <ElButton class="w-[100%]" @click="toRegister">
-          {{ t('login.register') }}
-        </ElButton>
-      </div>
-    </template>
-
-    <template #otherIcon>
-      <div class="flex justify-between w-[100%]">
-        <Icon
-          icon="ant-design:github-filled"
-          :size="iconSize"
-          class="cursor-pointer anticon"
-          :color="iconColor"
-        />
-        <Icon
-          icon="ant-design:wechat-filled"
-          :size="iconSize"
-          class="cursor-pointer anticon"
-          :color="iconColor"
-        />
-        <Icon
-          icon="ant-design:alipay-circle-filled"
-          :size="iconSize"
-          :color="iconColor"
-          class="cursor-pointer anticon"
-        />
-        <Icon
-          icon="ant-design:weibo-circle-filled"
-          :size="iconSize"
-          :color="iconColor"
-          class="cursor-pointer anticon"
-        />
-      </div>
-    </template>
-  </Form>
+    @register="formRegister"
+  />
 </template>
-
-<style lang="less" scoped>
-:deep(.anticon) {
-  &:hover {
-    color: var(--el-color-primary) !important;
-  }
-}
-</style>

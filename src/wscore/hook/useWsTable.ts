@@ -5,7 +5,7 @@ import { assign, get } from 'lodash-es'
 import { TableExpose } from '@/components/Table'
 // import { ElMessage, ElMessageBox } from 'element-plus'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
-import { TableSetPropsType } from '@/types/table'
+import { TableSetProps } from '@/components/Table'
 import VXETable from 'vxe-table'
 
 // const { t } = useI18n()
@@ -148,7 +148,7 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
 
   const methods: {
     setProps: (props: Recordable) => void
-    setColumn: (columnProps: TableSetPropsType[]) => void
+    setColumn: (columnProps: TableSetProps[]) => void
     setSearchParmas: (data: Recordable) => void
     getSelections: () => Promise<T[]>
     // delList: (ids: string[] | number[], multiple: boolean, message?: boolean) => Promise<void>
@@ -170,7 +170,7 @@ export const useWsTable = <T = any>(config?: UseTableConfig<T>) => {
       const table = await getTable()
       table?.setProps(props)
     },
-    setColumn: async (columnProps: TableSetPropsType[]) => {
+    setColumn: async (columnProps: TableSetProps[]) => {
       const table = await getTable()
       table?.setColumn(columnProps)
     },

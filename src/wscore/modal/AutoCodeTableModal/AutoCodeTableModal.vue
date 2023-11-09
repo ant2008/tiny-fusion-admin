@@ -8,12 +8,9 @@ import { getCurrentInstance, nextTick, onMounted, PropType, ref, unref, watch } 
 import { ElButton, ElDialog, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { ContentWrap } from '@/components/ContentWrap'
 import WsTable from '@/wscore/components/Table/WsTable.vue'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table'
 import { propTypes } from '@/utils/propTypes'
-import { StockBatchnoRequest, TbStockD } from '@/wscore/api/stock/stockType'
-import { ListStockBatchnoApi } from '@/wscore/api/stock/stockApi'
 import { useWsTable } from '@/wscore/hook/useWsTable'
-import { TplTableListQuery } from '@/wscore/api/sys/glTplColumnsApi'
 import { ListTables } from '@/wscore/api/sys/glAutoCode'
 
 const thsCp = getCurrentInstance()

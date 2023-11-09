@@ -1,8 +1,8 @@
 import { useI18n } from '@/hooks/web/useI18n'
-import { useEmitt } from '@/hooks/web/useEmitt'
+import { useEmitt } from '@/hooks/event/useEmitt'
 import { WsFormSearchSchema } from '@/wscore/types/wsform'
 import { reactive, unref } from 'vue'
-import { TableColumn } from '@/types/table'
+import { TableColumn } from '@/components/Table'
 import {
   renderDate,
   renderDateTime,
@@ -10,7 +10,7 @@ import {
   renderSysCodeDict,
   renderUserDict
 } from '@/wscore/utils/RenderHelper'
-import { FormSchema } from '@/types/form'
+import { FormSchema } from '@/components/Form'
 import {
   getDeptDictsSelect,
   getSyscodeSelect,

@@ -1,7 +1,7 @@
-import { config } from '@/config/axios/config'
+import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 
-const { result_code } = config
+const { code } = config
 
 const timeout = 1000
 
@@ -13,7 +13,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: {
           users: 102400,
           messages: 81212,
@@ -30,7 +30,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           { value: 1000, name: 'analysis.directAccess' },
           { value: 310, name: 'analysis.mailMarketing' },
@@ -48,7 +48,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           { value: 13253, name: 'analysis.monday' },
           { value: 34235, name: 'analysis.tuesday' },
@@ -68,7 +68,7 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
+        code: code,
         data: [
           { estimate: 100, actual: 120, name: 'analysis.january' },
           { estimate: 120, actual: 82, name: 'analysis.february' },

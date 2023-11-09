@@ -7,7 +7,6 @@ import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
 import { useDesign } from '@/hooks/web/useDesign'
-import { LayoutType } from '@/types/layout'
 
 const { getPrefixCls } = useDesign()
 
@@ -124,28 +123,29 @@ export default defineComponent({
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-menu';
 
-.is-active--after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 4px;
-  height: 100%;
-  background-color: var(--el-color-primary);
-  content: '';
-}
+// .is-active--after {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 4px;
+//   height: 100%;
+//   background-color: var(--el-color-primary);
+//   content: '';
+// }
 
 .@{prefix-cls} {
   position: relative;
   transition: width var(--transition-time-02);
 
-  &:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    border-left: 1px solid var(--left-menu-border-color);
-    content: '';
-  }
+  // &:after {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   height: 100%;
+  //   width: 1px;
+  //   background-color: var(--el-border-color);
+  //   content: '';
+  // }
 
   :deep(.@{elNamespace}-menu) {
     width: 100% !important;
@@ -155,6 +155,7 @@ export default defineComponent({
     .is-active {
       & > .@{elNamespace}-sub-menu__title {
         color: var(--left-menu-text-active-color) !important;
+        // background-color: var(--left-menu-bg-color) !important;
       }
     }
 
@@ -168,7 +169,6 @@ export default defineComponent({
     }
 
     // 设置选中时的高亮背景和高亮颜色
-    .@{elNamespace}-sub-menu.is-active,
     .@{elNamespace}-menu-item.is-active {
       color: var(--left-menu-text-active-color) !important;
       background-color: var(--left-menu-bg-active-color) !important;
@@ -181,9 +181,9 @@ export default defineComponent({
     .@{elNamespace}-menu-item.is-active {
       position: relative;
 
-      &:after {
-        .is-active--after;
-      }
+      // &:after {
+      //   .is-active--after;
+      // }
     }
 
     // 设置子菜单的背景颜色
@@ -204,9 +204,9 @@ export default defineComponent({
       position: relative;
       background-color: var(--left-menu-collapse-bg-active-color) !important;
 
-      &:after {
-        .is-active--after;
-      }
+      // &:after {
+      //   .is-active--after;
+      // }
     }
   }
 
@@ -235,7 +235,7 @@ export default defineComponent({
       .@{elNamespace}-menu-item.is-active {
         position: relative;
 
-        &:after {
+        &::after {
           display: none !important;
         }
       }
@@ -254,15 +254,15 @@ export default defineComponent({
 <style lang="less">
 @prefix-cls: ~'@{namespace}-menu-popper';
 
-.is-active--after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 4px;
-  height: 100%;
-  background-color: var(--el-color-primary);
-  content: '';
-}
+// .is-active--after {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 4px;
+//   height: 100%;
+//   background-color: var(--el-color-primary);
+//   content: '';
+// }
 
 .@{prefix-cls}--vertical,
 .@{prefix-cls}--horizontal {
@@ -270,6 +270,7 @@ export default defineComponent({
   .is-active {
     & > .el-sub-menu__title {
       color: var(--left-menu-text-active-color) !important;
+      // background-color: var(--left-menu-bg-color) !important;
     }
   }
 
@@ -291,9 +292,9 @@ export default defineComponent({
       background-color: var(--left-menu-bg-active-color) !important;
     }
 
-    &:after {
-      .is-active--after;
-    }
+    // &:after {
+    //   .is-active--after;
+    // }
   }
 }
 </style>

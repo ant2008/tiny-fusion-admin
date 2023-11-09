@@ -1,5 +1,3 @@
-// import type { Plugin } from 'vue'
-
 /**
  *
  * @param component 需要注册的组件
@@ -34,6 +32,13 @@ export const underlineToHump = (str: string): string => {
   return str.replace(/\-(\w)/g, (_, letter: string) => {
     return letter.toUpperCase()
   })
+}
+
+/**
+ * 驼峰转横杠
+ */
+export const humpToDash = (str: string): string => {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
 }
 
 export const setCssVar = (prop: string, val: any, dom = document.documentElement) => {
@@ -107,4 +112,11 @@ export function toAnyString() {
     return v.toString()
   })
   return str
+}
+
+/**
+ * 首字母大写
+ */
+export function firstUpperCase(str: string) {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
 }

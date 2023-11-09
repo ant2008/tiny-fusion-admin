@@ -43,8 +43,8 @@ import { useI18n } from 'vue-i18n'
 import { ElButton, ElDivider } from 'element-plus'
 import { FormProps } from '@/components/Form/src/types'
 import { FormOpera } from '@/wscore/api/base/base'
-import { useEmitt } from '@/hooks/web/useEmitt'
-import { FormSchema, FormSetPropsType } from '@/types/form'
+import { useEmitt } from '@/hooks/event/useEmitt'
+import { FormSchema, FormSetProps } from '@/components/Form/src/types/index'
 
 export default defineComponent({
   name: 'WsEditForm',
@@ -153,7 +153,7 @@ export default defineComponent({
       methods.addSchema(formSchema, index)
     }
 
-    const setSchema = (schemaProps: FormSetPropsType[]) => {
+    const setSchema = (schemaProps: FormSetProps[]) => {
       methods.setSchema(schemaProps)
     }
 

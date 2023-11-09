@@ -1,37 +1,53 @@
 <script lang="tsx">
 import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  onMounted,
   PropType,
+  defineComponent,
   ref,
+  computed,
   unref,
-  watch
+  watch,
+  onMounted,
+  getCurrentInstance
 } from 'vue'
-import { ElCol, ElForm, ElFormItem, ElRow, ElTooltip } from 'element-plus'
-import { componentMap } from '@/components/Form/src/componentMap'
+import {
+  ElForm,
+  ElFormItem,
+  ElRow,
+  ElCol,
+  FormRules,
+  ComponentSize
+  // FormItemProp
+} from 'element-plus'
+import { componentMap } from '@/components/Form/src/helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
 import {
-  initModel,
-  setComponentProps,
-  setFormItemSlots,
+  setTextPlaceholder,
   setGridProp,
+  setComponentProps,
   setItemComponentSlots,
-  setTextPlaceholder
+  initModel
 } from '@/components/Form/src/helper'
 import { useRenderSelect } from '@/components/Form/src/components/useRenderSelect'
 import { useRenderRadio } from '@/components/Form/src/components/useRenderRadio'
-
+import { useRenderCheckbox } from '@/components/Form/src/components/useRenderCheckbox'
 import { useDesign } from '@/hooks/web/useDesign'
 import { findIndex } from '@/utils'
-import { set } from 'lodash-es'
-import { FormProps } from '@/components/Form/src/types'
-import { Icon } from '@/components/Icon'
+import { get, set } from 'lodash-es'
+import { FormProps } from '@/components/Form/src/types/'
+import {
+  FormSchema,
+  FormSetProps,
+  ComponentNameEnum,
+  SelectComponentProps,
+  RadioGroupComponentProps,
+  CheckboxGroupComponentProps
+} from '@/components/Form/src/types/'
 import { WsFormSearchSchema } from '@/wscore/types/wsform'
-import { FormSchema, FormSetPropsType } from '@/types/form'
-import { useRenderCheckbox } from '@/components/Form/src/components/useRenderCheckbox'
+
+const { renderSelectOptions } = useRenderSelect()
+const { renderRadioOptions } = useRenderRadio()
+const { renderCheckboxOptions } = useRenderCheckbox()
 
 const { getPrefixCls } = useDesign()
 
@@ -49,25 +65,46 @@ export default defineComponent({
     isCol: propTypes.bool.def(true),
     // 表单数据对象
     model: {
-      type: Object as PropType<Recordable>,
+      type: Object as PropType<any>,
       default: () => ({})
     },
     // 是否自动设置placeholder
-    autoSetPlaceholder: propTypes.bool.def(false),
+    autoSetPlaceholder: propTypes.bool.def(true),
     // 是否自定义内容
     isCustom: propTypes.bool.def(false),
     // 表单label宽度
-    labelWidth: propTypes.oneOfType([String, Number]).def('auto')
+    labelWidth: propTypes.oneOfType([String, Number]).def('auto'),
+    rules: {
+      type: Object as PropType<FormRules>,
+      default: () => ({})
+    },
+    labelPosition: propTypes.oneOf(['left', 'right', 'top']).def('right'),
+    labelSuffix: propTypes.string.def(''),
+    hideRequiredAsterisk: propTypes.bool.def(false),
+    requireAsteriskPosition: propTypes.oneOf(['left', 'right']).def('left'),
+    showMessage: propTypes.bool.def(true),
+    inlineMessage: propTypes.bool.def(false),
+    statusIcon: propTypes.bool.def(false),
+    validateOnRuleChange: propTypes.bool.def(true),
+    size: {
+      type: String as PropType<ComponentSize>,
+      default: undefined
+    },
+    disabled: propTypes.bool.def(false),
+    scrollToError: propTypes.bool.def(false),
+    scrollToErrorOffset: propTypes.oneOfType([Boolean, Object]).def(undefined)
+    // onValidate: {
+    //   type: Function as PropType<(prop: FormItemProp, isValid: boolean, message: string) => void>,
+    //   default: () => {}
+    // }
   },
-  emits: ['register', 'ev-item-return'],
+  emits: ['register'],
   setup(props, { slots, expose, emit }) {
     // element form 实例
     const elFormRef = ref<ComponentRef<typeof ElForm>>()
 
+    //add for wscode
     const thsForm = getCurrentInstance()
-
-    // useForm传入的props
-    const outsideProps = ref<FormProps>({})
 
     const mergeProps = ref<FormProps>({})
 
@@ -77,23 +114,27 @@ export default defineComponent({
       return propsObj
     })
 
+    // 存储表单实例
+    const formComponents = ref({})
+
+    // 存储form-item实例
+    const formItemComponents = ref({})
+
     // 表单数据
-    const formModel = ref<Recordable>({})
+    const formModel = ref<Recordable>(props.model)
 
     onMounted(() => {
+      // emit('register', unref(elFormRef)?.$parent, unref(elFormRef))
       emit('register', unref(thsForm), unref(elFormRef))
     })
 
     // 对表单赋值
     const setValues = (data: Recordable = {}) => {
       formModel.value = Object.assign(unref(formModel), data)
-      //debug
-      console.log('test form', formModel)
     }
 
     const setProps = (props: FormProps = {}) => {
       mergeProps.value = Object.assign(unref(mergeProps), props)
-      outsideProps.value = props
     }
 
     const delSchema = (field: string) => {
@@ -114,7 +155,7 @@ export default defineComponent({
       schema.push(formSchema)
     }
 
-    const setSchema = (schemaProps: FormSetPropsType[]) => {
+    const setSchema = (schemaProps: FormSetProps[]) => {
       const { schema } = unref(getProps)
       for (const v of schema) {
         for (const item of schemaProps) {
@@ -123,12 +164,44 @@ export default defineComponent({
           }
         }
       }
-      //强制刷新
-      unref(elFormRef)?.$forceUpdate()
     }
 
-    const getElFormRef = (): ComponentRef<typeof ElForm> => {
-      return unref(elFormRef) as ComponentRef<typeof ElForm>
+    const getOptions = async (fn: Function, item: FormSchema) => {
+      const options = await fn()
+      setSchema([
+        {
+          field: item.field,
+          path:
+            item.component === ComponentNameEnum.TREE_SELECT
+              ? 'componentProps.data'
+              : 'componentProps.options',
+          value: options
+        }
+      ])
+    }
+
+    /**
+     * @description: 获取表单组件实例
+     * @param filed 表单字段
+     */
+    const getComponentExpose = (filed: string) => {
+      return unref(formComponents)[filed]
+    }
+
+    /**
+     * @description: 获取formItem实例
+     * @param filed 表单字段
+     */
+    const getFormItemExpose = (filed: string) => {
+      return unref(formItemComponents)[filed]
+    }
+
+    const setComponentRefMap = (ref: any, filed: string) => {
+      formComponents.value[filed] = ref
+    }
+
+    const setFormItemRefMap = (ref: any, filed: string) => {
+      formItemComponents.value[filed] = ref
     }
 
     const getFormSchemaDatas = (): FormSchema[] => {
@@ -210,7 +283,9 @@ export default defineComponent({
       delSchema,
       addSchema,
       setSchema,
-      getElFormRef,
+      getComponentExpose,
+      getFormItemExpose,
+      //add wscode
       getFormSchemaDatas,
       setFormFieldReadOnly,
       getFormData
@@ -245,7 +320,7 @@ export default defineComponent({
       const { schema = [], isCol } = unref(getProps)
 
       return schema
-        .filter((v) => !v.hidden)
+        .filter((v) => !v.remove)
         .map((item) => {
           // 如果是 Divider 组件，需要自己占用一行
           const isDivider = item.component === 'Divider'
@@ -262,93 +337,126 @@ export default defineComponent({
     }
 
     // 渲染formItem
+    //fit to wscore, change FormSchema to WsFormSchema
     const renderFormItem = (item: WsFormSearchSchema) => {
-      // 单独给只有options属性的组件做判断
-      const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
-      const slotsMap: Recordable = {
-        ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
+      // 如果有optionApi，优先使用optionApi
+      if (item.optionApi) {
+        // 内部自动调用接口，不影响其它渲染
+        getOptions(item.optionApi, item)
       }
-      if (
-        item?.component !== 'SelectV2' &&
-        item?.component !== 'Cascader' &&
-        item?.componentProps?.options
-      ) {
-        slotsMap.default = () => renderOptions(item)
-      }
+      const formItemSlots: Recordable = {
+        default: () => {
+          if (item?.formItemProps?.slots?.default) {
+            return item?.formItemProps?.slots?.default(formModel.value)
+          } else {
+            const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
 
-      const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
-      // 如果有 labelMessage，自动使用插槽渲染
-      if (item?.labelMessage) {
-        formItemSlots.label = () => {
-          return (
-            <>
-              <span>{item.label}</span>
-              <ElTooltip placement="right" raw-content>
-                {{
-                  content: () => <span v-html={item.labelMessage}></span>,
-                  default: () => (
-                    <Icon
-                      icon="ep:warning"
-                      size={16}
-                      color="var(--el-color-primary)"
-                      class="ml-2px relative top-1px"
-                    ></Icon>
-                  )
-                }}
-              </ElTooltip>
-            </>
-          )
-        }
-      }
-      return (
-        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
-          {{
-            ...formItemSlots,
-            default: () => {
-              const Com = componentMap[item.component as string] as ReturnType<
-                typeof defineComponent
-              >
+            const { autoSetPlaceholder } = unref(getProps)
 
-              const { autoSetPlaceholder } = unref(getProps)
+            const componentSlots = (item?.componentProps as any)?.slots || {}
+            const slotsMap: Recordable = {
+              ...setItemComponentSlots(componentSlots)
+            }
+            // // 如果是select组件，并且没有自定义模板，自动渲染options
+            if (item.component === ComponentNameEnum.SELECT) {
+              slotsMap.default = !componentSlots.default
+                ? () => renderSelectOptions(item)
+                : () => {
+                    return componentSlots.default(
+                      unref((item?.componentProps as SelectComponentProps)?.options)
+                    )
+                  }
+            }
 
+            // 虚拟列表
+            if (item.component === ComponentNameEnum.SELECT_V2 && componentSlots.default) {
+              slotsMap.default = ({ item }) => {
+                return componentSlots.default(item)
+              }
+            }
+
+            // 单选框组和按钮样式
+            if (
+              item.component === ComponentNameEnum.RADIO_GROUP ||
+              item.component === ComponentNameEnum.RADIO_BUTTON
+            ) {
+              slotsMap.default = !componentSlots.default
+                ? () => renderRadioOptions(item)
+                : () => {
+                    return componentSlots.default(
+                      unref((item?.componentProps as CheckboxGroupComponentProps)?.options)
+                    )
+                  }
+            }
+
+            // 多选框组和按钮样式
+            if (
+              item.component === ComponentNameEnum.CHECKBOX_GROUP ||
+              item.component === ComponentNameEnum.CHECKBOX_BUTTON
+            ) {
+              slotsMap.default = !componentSlots.default
+                ? () => renderCheckboxOptions(item)
+                : () => {
+                    return componentSlots.default(
+                      unref((item?.componentProps as RadioGroupComponentProps)?.options)
+                    )
+                  }
+            }
+
+            const Comp = () => {
+              // 如果field是多层路径，需要转换成对象
+              const itemVal = computed({
+                get: () => {
+                  return get(formModel.value, item.field)
+                },
+                set: (val) => {
+                  set(formModel.value, item.field, val)
+                }
+              })
+
+              //fit to wscore,同时兼容两种模式。 2023-11-07
               return slots[item.field] ? (
                 getSlot(slots, item.field, { item })
               ) : (
                 <Com
-                  vModel={formModel.value[item.field]}
+                  vModel={itemVal.value}
+                  ref={(el: any) => setComponentRefMap(el, item.field)}
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}
                   {...setComponentProps(item)}
-                  {...(notRenderOptions.includes(item?.component as string) &&
-                  item?.componentProps?.options
-                    ? { options: item?.componentProps?.options || [] }
-                    : {})}
+                  style={item.componentProps?.style || {}}
                 >
                   {{ ...slotsMap }}
                 </Com>
               )
             }
-          }}
+
+            return <>{Comp()}</>
+          }
+        }
+      }
+      if (item?.formItemProps?.slots?.label) {
+        formItemSlots.label = (...args: any[]) => {
+          return (item?.formItemProps?.slots as any)?.label(...args)
+        }
+      }
+      if (item?.formItemProps?.slots?.error) {
+        formItemSlots.error = (...args: any[]) => {
+          return (item?.formItemProps?.slots as any)?.error(...args)
+        }
+      }
+      //debug
+      console.log('wsform formItemSlots', formItemSlots)
+      return (
+        <ElFormItem
+          v-show={!item.hidden}
+          ref={(el: any) => setFormItemRefMap(el, item.field)}
+          {...(item.formItemProps || {})}
+          prop={item.field}
+          label={item.label || ''}
+        >
+          {formItemSlots}
         </ElFormItem>
       )
-    }
-
-    // 渲染options
-    const renderOptions = (item: FormSchema) => {
-      switch (item.component) {
-        case 'Select':
-          const { renderSelectOptions } = useRenderSelect(slots)
-          return renderSelectOptions(item)
-        case 'Radio':
-        case 'RadioButton':
-          const { renderRadioOptions } = useRenderRadio()
-          return renderRadioOptions(item)
-        case 'Checkbox':
-        case 'CheckboxButton':
-          const { renderCheckboxOptions } = useRenderCheckbox()
-          return renderCheckboxOptions(item)
-        default:
-          break
-      }
     }
 
     // 过滤传入Form组件的属性
@@ -361,19 +469,14 @@ export default defineComponent({
           delete props[key]
         }
       }
-      return props
+      return props as FormProps
     }
-
-    // const doItemReturn = (itemName, itemValue, retData) => {
-    //   alert('event1')
-    //   emit('ev-item-return', itemName, itemValue, retData)
-    // }
 
     return () => (
       <ElForm
         ref={elFormRef}
         {...getFormBindValue()}
-        model={props.isCustom ? props.model : formModel}
+        model={unref(getProps).isCustom ? unref(getProps).model : formModel}
         class={prefixCls}
       >
         {{
@@ -388,3 +491,14 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="less" scoped>
+.@{elNamespace}-form.@{namespace}-form .@{elNamespace}-row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.@{elNamespace}-form--inline .@{elNamespace}-input {
+  width: 245px;
+}
+</style>

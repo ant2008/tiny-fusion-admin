@@ -2,7 +2,7 @@ import { nextTick, ref, unref } from 'vue'
 import { WsFormExpose } from '@/wscore/components/WsEditForm/WsEditFormType'
 import { FormOpera, initAdd, MdAddPost, MdModPost } from '@/wscore/api/base/base'
 import WsMdForm from '@/wscore/components/WsMdForm/WsMdForm.vue'
-import { FormSchema, FormSetPropsType } from '@/types/form'
+import { FormSchema, FormSetProps } from '@/components/Form'
 import { FormProps } from '@/components/Form/src/types'
 import { MdPostRequestParam } from '@/wscore/api/base/basetype'
 import { ElMessageBox } from 'element-plus'
@@ -38,7 +38,7 @@ export const useWsMdForm = (funcNo: string) => {
     setProps: (props: Recordable) => void
     setValues: (data: Recordable) => void
     getFormData: <T = Recordable | undefined>() => Promise<T>
-    setSchema: (schemaProps: FormSetPropsType[]) => void
+    setSchema: (schemaProps: FormSetProps[]) => void
     addSchema: (formSchema: FormSchema, index?: number) => void
     delSchema: (field: string) => void
     getFormSchemaDatas: <T = Recordable | undefined>() => Promise<T>
@@ -69,7 +69,7 @@ export const useWsMdForm = (funcNo: string) => {
     /**
      * @param schemaProps 需要设置的schemaProps
      */
-    setSchema: async (schemaProps: FormSetPropsType[]) => {
+    setSchema: async (schemaProps: FormSetProps[]) => {
       const form = await getForm()
       form?.exposed.setSchema(schemaProps)
     },

@@ -53,7 +53,7 @@ import { findIndex } from '@/utils'
 import { WsFormSearchSchema } from '@/wscore/types/wsform'
 import { useWsForm } from '@/wscore/hook/useWsForm'
 import WsForm from '@/wscore/components/WsForm/WsForm.vue'
-import { FormSchema } from '@/types/form'
+import { FormSchema } from '@/components/Form'
 
 export default defineComponent({
   name: 'SearchForm',
@@ -100,6 +100,7 @@ export default defineComponent({
           schema.splice(index + 1, length)
         }
       }
+      //这个代码利用form的插件模式，默认有个action的列，然后page中就可以进行处理。
       if (props.layout === 'inline') {
         schema = schema.concat([
           {
@@ -157,7 +158,8 @@ export default defineComponent({
       reset,
       newSchema,
       register,
-      t
+      t,
+      visible
     }
   }
 })
