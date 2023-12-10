@@ -111,6 +111,8 @@ export default defineComponent({
           }
         ])
       }
+      //debug
+      console.log('test schema', schema)
       return schema
     })
 

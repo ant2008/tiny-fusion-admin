@@ -3,7 +3,7 @@ import { getCurrentInstance, nextTick, ref, unref } from 'vue'
 import { FormExpose } from '@/components/Form'
 import { ElForm } from 'element-plus'
 import WsForm from '@/wscore/components/WsForm/WsForm.vue'
-import { FormSchema, FormSetPropsType } from '@/types/form'
+import { FormSchema, FormSetProps } from '@/components/Form'
 
 export const useWsForm = (props?: FormProps) => {
   // From实例
@@ -39,7 +39,7 @@ export const useWsForm = (props?: FormProps) => {
     setProps: (props: Recordable) => void
     setValues: (data: Recordable) => void
     getFormData: <T = Recordable | undefined>() => Promise<T>
-    setSchema: (schemaProps: FormSetPropsType[]) => void
+    setSchema: (schemaProps: FormSetProps[]) => void
     addSchema: (formSchema: FormSchema, index?: number) => void
     delSchema: (field: string) => void
     getFormSchemaDatas: <T = Recordable | undefined>() => Promise<T>
@@ -58,7 +58,7 @@ export const useWsForm = (props?: FormProps) => {
     /**
      * @param schemaProps 需要设置的schemaProps
      */
-    setSchema: async (schemaProps: FormSetPropsType[]) => {
+    setSchema: async (schemaProps: FormSetProps[]) => {
       const form = await getForm()
       form?.exposed.setSchema(schemaProps)
     },
@@ -92,7 +92,10 @@ export const useWsForm = (props?: FormProps) => {
       //debug
       console.log('usewsform getform', form)
       // return form?.getFormSchemaDatas() as Recordable
-      return form?.exposed.getFormSchemaDatas() as T
+      let formData: any = null
+      formData = form?.exposed.getFormSchemaDatas() as T
+      console.log('usewsform getform data', formData)
+      return formData
     },
     setFormFieldReadOnly: async (readOnlyFlag: boolean) => {
       const form = await getForm()

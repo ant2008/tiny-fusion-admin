@@ -118,8 +118,8 @@ export default defineComponent({
         funcNo: funcNo,
         idx: idx
       })
-      if (res?.dataList !== null) {
-        detailTableDatas.value = res.dataList
+      if (res?.data !== null) {
+        detailTableDatas.value = res.data
       }
       activeTabName.value = 'MD1'
     }

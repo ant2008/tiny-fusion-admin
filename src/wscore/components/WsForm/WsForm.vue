@@ -206,6 +206,8 @@ export default defineComponent({
 
     const getFormSchemaDatas = (): FormSchema[] => {
       const { schema } = unref(getProps)
+      //debug
+      console.log('schema', schema)
       //此处还是必须用unref，不然导致获取不到对应的对象，使用unref解除响应关系
       const model = unref(formModel)
       //删除action列。
