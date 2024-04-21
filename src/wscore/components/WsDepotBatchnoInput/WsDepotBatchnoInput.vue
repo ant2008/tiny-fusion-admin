@@ -10,11 +10,11 @@
     v-bind="bindProps"
   >
     <template #suffix>
-      <ElButton link @click="doclick" :disabled="readonly">
-        <template #icon>
-          <el-icon><Search /></el-icon>
-        </template>
-      </ElButton>
+      <ElButton link @click="doclick" :disabled="readonly" :icon="icon" />
+      <!--        <template #icon>-->
+      <!--          <el-icon><Search /></el-icon>-->
+      <!--        </template>-->
+      <!--      </ElButton>-->
     </template>
   </ElInput>
   <BatchnoQueryModal
@@ -39,12 +39,13 @@ import { propTypes } from '@/utils/propTypes'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import WsEditForm from '@/wscore/components/WsEditForm/WsEditForm.vue'
 import { set } from 'lodash-es'
-import { Search } from '@element-plus/icons-vue'
+// import { Search } from '@element-plus/icons-vue'
 import { TableColumn } from '@/components/Table'
+import { useIcon } from '@/hooks/web/useIcon'
 
 export default defineComponent({
   name: 'WsDepotBatchnoInput',
-  components: { BatchnoQueryModal, ElInput, ElButton, ElIcon, Search },
+  components: { BatchnoQueryModal, ElInput, ElButton },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),
@@ -71,6 +72,8 @@ export default defineComponent({
     const itemIdValue = ref('')
 
     let inShowColumns: TableColumn[] = reactive([])
+
+    const icon = useIcon({ icon: 'svg-icon:search' })
 
     //绑定属性
     const getBindValue = () => {
@@ -206,7 +209,8 @@ export default defineComponent({
       bindProps,
       doChange,
       depotIdValue,
-      itemIdValue
+      itemIdValue,
+      icon
     }
   }
 })

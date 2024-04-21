@@ -5,7 +5,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { renderSysCodeDict } from '@/wscore/utils/RenderHelper'
 import { TableColumn } from '@/components/Table'
 import { FormSchema } from '@/components/Form'
-import { useEmitt } from '@/hooks/event/useEmitt'
+import { useEventBus as useEmitt } from '@/hooks/event/useEventBus'
 
 const { t } = useI18n()
 

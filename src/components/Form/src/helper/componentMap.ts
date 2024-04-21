@@ -1,7 +1,6 @@
 import type { Component } from 'vue'
 //加入wscore独有的类型
 import { wscomponentMap } from '@/wscore/types/wscomponentMap'
-
 import {
   ElCascader,
   ElCheckboxGroup,
@@ -27,6 +26,7 @@ import { InputPassword } from '@/components/InputPassword'
 import { Editor } from '@/components/Editor'
 import { JsonEditor } from '@/components/JsonEditor'
 import { IconPicker } from '@/components/IconPicker'
+import { IAgree } from '@/components/IAgree'
 import { ComponentName } from '../types'
 
 const componentMap: Recordable<Component, ComponentName> = {
@@ -55,6 +55,7 @@ const componentMap: Recordable<Component, ComponentName> = {
   Upload: ElUpload,
   JsonEditor: JsonEditor,
   IconPicker: IconPicker,
+  IAgree: IAgree,
   ...wscomponentMap
 }
 

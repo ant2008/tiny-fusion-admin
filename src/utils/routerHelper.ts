@@ -8,6 +8,7 @@ import type {
 import { isUrl } from '@/utils/is'
 import { omit, cloneDeep } from 'lodash-es'
 
+//屏蔽原来的
 // const modules = import.meta.glob('../views/**/*.{vue,tsx}')
 //改造模块引入的范围 2023-11-05
 const modules = import.meta.glob(['../views/**/*.{vue,tsx}', '../wscore/views/**/*.{vue,tsx}'])
@@ -197,7 +198,6 @@ const addToChildren = (
     }
   }
 }
-
 //add wscode need function. 2023-11-05
 export const generateRoutesFn2 = (routes: AppCustomRouteRecordRaw[]): AppRouteRecordRaw[] => {
   const res: AppRouteRecordRaw[] = []

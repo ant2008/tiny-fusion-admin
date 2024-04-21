@@ -13,7 +13,7 @@ export const GetSysCodeDictMap = (): AxiosPromise<WsDictType[]> => {
 }
 
 export const GetRoleDictMap = (): AxiosPromise<WsDictType[]> => {
-  const sUrl = 'Sscode/GetRoleDict'
+  const sUrl = 'MRole/GetRoleDict'
   return getUseToken({
     url: sUrl,
     // data: menuParam,
@@ -22,7 +22,7 @@ export const GetRoleDictMap = (): AxiosPromise<WsDictType[]> => {
 }
 
 export const GetUserDicts = (): AxiosPromise<WsDictType[]> => {
-  const sUrl = 'Sscode/GetUserDict'
+  const sUrl = 'MUser/GetUserDict'
   return getUseToken({
     url: sUrl,
     // data: menuParam,

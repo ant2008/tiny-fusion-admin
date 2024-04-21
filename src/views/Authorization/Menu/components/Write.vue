@@ -1,11 +1,14 @@
 <script setup lang="tsx">
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
-import { PropType, reactive, watch } from 'vue'
+import { PropType, reactive, watch, ref, unref } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
 import { getMenuListApi } from '@/api/menu'
-import { ElTag, ElButton } from 'element-plus'
+import { ElTag } from 'element-plus'
+import AddButtonPermission from './AddButtonPermission.vue'
+import { BaseButton } from '@/components/Button'
+import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -17,6 +20,16 @@ const props = defineProps({
     default: () => null
   }
 })
+
+const handleClose = async (tag: any) => {
+  const formData = await getFormData()
+  // 删除对应的权限
+  setValues({
+    permissionList: formData?.permissionList?.filter((v: any) => v.value !== tag.value)
+  })
+}
+
+const showDrawer = ref(false)
 
 const formSchema = reactive<FormSchema[]>([
   {
@@ -50,7 +63,7 @@ const formSchema = reactive<FormSchema[]>([
               }
             ])
             setValues({
-              component: ''
+              component: unref(cacheComponent)
             })
           } else {
             setSchema([
@@ -104,7 +117,7 @@ const formSchema = reactive<FormSchema[]>([
             })
           } else if (formData.type === 1) {
             setValues({
-              component: ''
+              component: unref(cacheComponent) ?? ''
             })
           }
         }
@@ -127,7 +140,12 @@ const formSchema = reactive<FormSchema[]>([
     value: '#',
     componentProps: {
       disabled: true,
-      placeholder: '#为顶级目录，##为子目录'
+      placeholder: '#为顶级目录，##为子目录',
+      on: {
+        change: (val: string) => {
+          cacheComponent.value = val
+        }
+      }
     }
   },
   {
@@ -176,20 +194,18 @@ const formSchema = reactive<FormSchema[]>([
     },
     formItemProps: {
       slots: {
-        default: () => (
+        default: (data: any) => (
           <>
-            <ElTag class="mx-1" closable disableTransitions={false}>
-              新增
-            </ElTag>
-            <ElTag class="mx-1" closable disableTransitions={false}>
-              编辑
-            </ElTag>
-            <ElTag class="mx-1" closable disableTransitions={false}>
-              删除
-            </ElTag>
-            <ElButton type="primary" size="small" onClick={() => console.log('添加权限')}>
+            {data?.permissionList?.map((v) => {
+              return (
+                <ElTag class="mr-1" key={v.value} closable onClose={() => handleClose(v)}>
+                  {v.label}
+                </ElTag>
+              )
+            })}
+            <BaseButton type="primary" size="small" onClick={() => (showDrawer.value = true)}>
               添加权限
-            </ElButton>
+            </BaseButton>
           </>
         )
       }
@@ -252,10 +268,48 @@ const submit = async () => {
   }
 }
 
+const cacheComponent = ref('')
+
 watch(
   () => props.currentRow,
-  (currentRow) => {
-    if (!currentRow) return
+  (value) => {
+    if (!value) return
+    const currentRow = cloneDeep(value)
+    cacheComponent.value = currentRow.type === 1 ? currentRow.component : ''
+    if (currentRow.parentId === 0) {
+      setSchema([
+        {
+          field: 'component',
+          path: 'componentProps.disabled',
+          value: true
+        }
+      ])
+    } else {
+      setSchema([
+        {
+          field: 'component',
+          path: 'componentProps.disabled',
+          value: false
+        }
+      ])
+    }
+    if (currentRow.type === 1) {
+      setSchema([
+        {
+          field: 'component',
+          path: 'componentProps.disabled',
+          value: false
+        }
+      ])
+    } else {
+      setSchema([
+        {
+          field: 'component',
+          path: 'componentProps.disabled',
+          value: true
+        }
+      ])
+    }
     setValues(currentRow)
   },
   {
@@ -267,8 +321,16 @@ watch(
 defineExpose({
   submit
 })
+
+const confirm = async (data: any) => {
+  const formData = await getFormData()
+  setValues({
+    permissionList: [...(formData?.permissionList || []), data]
+  })
+}
 </script>
 
 <template>
   <Form :rules="rules" @register="formRegister" :schema="formSchema" />
+  <AddButtonPermission v-model="showDrawer" @confirm="confirm" />
 </template>

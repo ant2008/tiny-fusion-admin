@@ -45,6 +45,10 @@ export const setCssVar = (prop: string, val: any, dom = document.documentElement
   dom.style.setProperty(prop, val)
 }
 
+export const getCssVar = (prop: string, dom = document.documentElement) => {
+  return getComputedStyle(dom).getPropertyValue(prop)
+}
+
 /**
  * 查找数组对象的某个下标
  * @param {Array} ary 查找的数组
@@ -119,4 +123,15 @@ export function toAnyString() {
  */
 export function firstUpperCase(str: string) {
   return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
+}
+
+/**
+ * 把对象转为formData
+ */
+export function objToFormData(obj: Recordable) {
+  const formData = new FormData()
+  Object.keys(obj).forEach((key) => {
+    formData.append(key, obj[key])
+  })
+  return formData
 }

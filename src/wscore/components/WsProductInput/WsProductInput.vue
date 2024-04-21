@@ -9,11 +9,7 @@
     v-bind="bindProps"
   >
     <template #suffix>
-      <ElButton type="primary" link @click="doclick" :disabled="readonly">
-        <template #icon>
-          <ElIcon><Search /></ElIcon>
-        </template>
-      </ElButton>
+      <ElButton type="primary" link @click="doclick" :disabled="readonly" :icon="icon" />
     </template>
   </ElInput>
   <ProductModal
@@ -26,13 +22,13 @@
 <script lang="ts">
 import { defineComponent, getCurrentInstance, nextTick, ref, unref, useAttrs, watch } from 'vue'
 import { propTypes } from '@/utils/propTypes'
-import { ElInput, ElButton } from 'element-plus'
+import { ElInput, ElButton, ElIcon } from 'element-plus'
 import ProductModal from '@/wscore/modal/ProductModal/ProductModal.vue'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
-import { Search } from '@element-plus/icons-vue'
+import { useIcon } from '@/hooks/web/useIcon'
 export default defineComponent({
   name: 'WsProductInput',
-  components: { ProductModal, ElInput, ElButton, Search },
+  components: { ProductModal, ElInput, ElButton },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),
@@ -45,6 +41,8 @@ export default defineComponent({
     const selfCp = getCurrentInstance()
 
     const attrs = useAttrs()
+
+    const icon = useIcon({ icon: 'svg-icon:search' })
 
     //绑定属性
     const getBindValue = () => {
@@ -108,7 +106,8 @@ export default defineComponent({
       doclick,
       doReturn,
       doInput,
-      bindProps
+      bindProps,
+      icon
     }
   }
 })

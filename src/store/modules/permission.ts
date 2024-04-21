@@ -4,7 +4,7 @@ import {
   generateRoutesByFrontEnd,
   generateRoutesByServer,
   flatMultiLevelRoutes,
-  generateRoutesFn2
+  generateRoutesFn2 //fix wscode
 } from '@/utils/routerHelper'
 import { store } from '../index'
 import { cloneDeep } from 'lodash-es'
@@ -39,7 +39,12 @@ export const usePermissionStore = defineStore('permission', {
     //add ws code here.
     getFirstChildRouters(): AppRouteRecordRaw {
       const nodeIdx = this.routers.findIndex((val) => {
-        if (val.children && val.children.length > 0 && val.name !== 'Redirect') {
+        if (
+          val.children &&
+          val.children.length > 0 &&
+          val.name !== 'Redirect' &&
+          !val.name.includes('Personal')
+        ) {
           //debug
           console.log('node is ', val.children[0])
           return val
@@ -60,6 +65,7 @@ export const usePermissionStore = defineStore('permission', {
         if (type === 'server') {
           // 模拟后端过滤菜单
           routerMap = generateRoutesByServer(routers as AppCustomRouteRecordRaw[])
+          console.log(routerMap)
         } else if (type === 'admin') {
           //add wscode need. 2023-11-05
           // 模拟后端过滤菜单
@@ -94,6 +100,9 @@ export const usePermissionStore = defineStore('permission', {
     setMenuTabRouters(routers: AppRouteRecordRaw[]): void {
       this.menuTabRouters = routers
     }
+  },
+  persist: {
+    paths: ['routers', 'addRouters', 'menuTabRouters']
   }
 })
 

@@ -57,7 +57,7 @@ import { FormOpera } from '@/wscore/api/base/base'
 import { useI18n } from 'vue-i18n'
 import { useWsForm } from '@/wscore/hook/useWsForm'
 import { FormSchema, FormSetProps } from '@/components/Form/src/types'
-import { useEmitt } from '@/hooks/event/useEmitt'
+import { useEventBus as useEmitt } from '@/hooks/event/useEventBus'
 
 export default defineComponent({
   name: 'WsModalForm',

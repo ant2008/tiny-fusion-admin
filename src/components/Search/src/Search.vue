@@ -88,6 +88,9 @@ const newSchema = computed(() => {
                   />
                 </div>
               )
+            },
+            label: () => {
+              return <span>&nbsp;</span>
             }
           }
         }
@@ -222,7 +225,8 @@ const defaultExpose = {
   setSchema,
   setValues,
   delSchema,
-  addSchema
+  addSchema,
+  getFormData
 }
 
 onMounted(() => {

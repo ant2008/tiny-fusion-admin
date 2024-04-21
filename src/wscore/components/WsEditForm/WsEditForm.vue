@@ -43,7 +43,7 @@ import { useI18n } from 'vue-i18n'
 import { ElButton, ElDivider } from 'element-plus'
 import { FormProps } from '@/components/Form/src/types'
 import { FormOpera } from '@/wscore/api/base/base'
-import { useEmitt } from '@/hooks/event/useEmitt'
+import { useEventBus as useEmitt } from '@/hooks/event/useEventBus'
 import { FormSchema, FormSetProps } from '@/components/Form/src/types/index'
 
 export default defineComponent({

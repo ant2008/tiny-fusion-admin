@@ -10,9 +10,9 @@
   >
     <template #suffix>
       <ElButton link @click="doclick" :disabled="readonly">
-        <template #icon>
-          <ElIcon><Search /></ElIcon>
-        </template>
+        <!--        <template #icon>-->
+        <!--          <ElIcon><Search /></ElIcon>-->
+        <!--        </template>-->
       </ElButton>
     </template>
   </ElInput>
@@ -32,10 +32,10 @@ import { propTypes } from '@/utils/propTypes'
 import { useWsQueryModal } from '@/wscore/hook/useWsQueryModal'
 import QuickQueryModal from '@/wscore/modal/QuickQueryModal/QuickQueryModal.vue'
 import { TableColumn } from '@/components/Table/'
-import { Search } from '@element-plus/icons-vue'
+// import { Search } from '@element-plus/icons-vue'
 export default defineComponent({
   name: 'WsQuickQueryInput',
-  components: { QuickQueryModal, ElInput, ElButton, ElIcon, Search },
+  components: { QuickQueryModal, ElInput, ElButton },
   inheritAttrs: false,
   props: {
     readonly: propTypes.bool.def(false),

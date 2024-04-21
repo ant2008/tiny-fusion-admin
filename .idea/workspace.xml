@@ -4,12 +4,173 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b08f89a-95c8-40e7-82a6-a9c6d54a1b78" name="更改" comment="1、根据新的框架重新进行融合和优化 2、为匹配新的vue-admin-plus的框架，wscore的核心代码也做了修改">
+    <list default="true" id="6b08f89a-95c8-40e7-82a6-a9c6d54a1b78" name="更改" comment="1、vue-element-plus-admin 调整到版本2.7 2、对其中部分核心代码做完善 3、因为后台调整为DDD模式，前端代码出现不匹配，后续待逐一调整">
+      <change afterPath="$PROJECT_DIR$/src/assets/imgs/personal-center-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/axios/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/axios/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/axios/service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/axios/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Avatars/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Avatars/src/Avatars.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Avatars/src/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Button/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Button/src/Button.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/Form.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/components/useRenderCheckbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/components/useRenderRadio.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/components/useRenderSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/helper/componentMap.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/helper/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Form_bak/src/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/IAgree/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/IAgree/src/IAgree.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/IAgree/src/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ImageCropping/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ImageCropping/src/ImageCropping.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/src/components/ColumnSetting.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/VideoPlayer/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/VideoPlayer/src/VideoPlayer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/VideoPlayerViewer/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/VideoPlayerViewer/src/VideoPlayerViewer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/modules/app_bak.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/modules/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Authorization/Menu/components/AddButtonPermission.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Authorization/Role/components/Detail.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Components/Avatars.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Components/IAgree.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Components/ImageCropping.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Components/Table/CardTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Components/Table/TableVideoPreview.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Components/VideoPlayer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Personal/PersonalCenter/PersonalCenter.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Personal/PersonalCenter/components/EditInfo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Personal/PersonalCenter/components/EditPassword.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Personal/PersonalCenter/components/UploadAvatar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/SearchForm/SearchForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/SearchForm/SearchForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsForm/WsForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsForm/WsForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsMdForm/WsMdForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wscore/hook/useWsForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/hook/useWsForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/common/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/common/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/dashboard/analysis/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dashboard/analysis/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/dashboard/workplace/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dashboard/workplace/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/department/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/department/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/login/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/login/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/login/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/login/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/menu/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/menu/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/request/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/request/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/role/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/role/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/table/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/table/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Backtop/src/Backtop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Backtop/src/Backtop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Descriptions/src/Descriptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Descriptions/src/Descriptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Echart/src/Echart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Echart/src/Echart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Error/src/Error.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Error/src/Error.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/src/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/src/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/Form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/Form.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/components/useRenderCheckbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/components/useRenderCheckbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/components/useRenderRadio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/components/useRenderRadio.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/helper/componentMap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/helper/componentMap.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/helper/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/helper/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Icon/src/Icon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Icon/src/Icon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/IconPicker/src/IconPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/IconPicker/src/IconPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Menu/src/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/src/Menu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Menu/src/components/useRenderMenuItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/src/components/useRenderMenuItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Menu/src/components/useRenderMenuTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/src/components/useRenderMenuTitle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/src/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/src/Search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/src/components/ActionButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/src/components/ActionButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Setting/src/Setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Setting/src/Setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TabMenu/src/TabMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TabMenu/src/TabMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/src/Table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/src/Table.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/src/components/TableActions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/src/components/TableActions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TagsView/src/TagsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TagsView/src/TagsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ThemeSwitch/src/ThemeSwitch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemeSwitch/src/ThemeSwitch.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserInfo/src/UserInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInfo/src/UserInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserInfo/src/components/LockDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInfo/src/components/LockDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserInfo/src/components/LockPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInfo/src/components/LockPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Waterfall/src/Waterfall.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Waterfall/src/Waterfall.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/event/useEmitt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/event/useEventBus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/web/useCrudSchemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/web/useCrudSchemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/web/usePageLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/web/usePageLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/web/useSearch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/web/useSearch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/web/useTitle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/web/useTitle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/web/useValidator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/web/useValidator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/AppView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/components/AppView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/ToolHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/components/ToolHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/useRenderLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/components/useRenderLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/permission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/permission.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/elementPlus/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/elementPlus/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/svgIcon/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/svgIcon/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/locale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/locale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/lock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/lock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/permission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/permission.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/tagsView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/tagsView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/color.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/color.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/routerHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/routerHelper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Department/Department.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Department/Department.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Department/components/Write.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Department/components/Write.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Menu/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Menu/Menu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Menu/components/Detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Menu/components/Detail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Menu/components/Write.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Menu/components/Write.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Role/Role.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Role/Role.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/Role/components/Write.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/Role/components/Write.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/User/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/User/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Authorization/User/components/Write.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Authorization/User/components/Write.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/CountTo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/CountTo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Descriptions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Descriptions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Dialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Icon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Icon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/IconPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/IconPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/ImageViewer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/ImageViewer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Table/DefaultTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Table/DefaultTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Table/TableImagePreview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Table/TableImagePreview.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Table/TreeTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Table/TreeTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Components/Table/UseTableDemo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Components/Table/UseTableDemo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Example/Dialog/ExampleDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Example/Dialog/ExampleDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Example/Page/ExampleAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Example/Page/ExampleAdd.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Example/Page/ExampleDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Example/Page/ExampleDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Example/Page/ExampleEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Example/Page/ExampleEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Example/Page/ExamplePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Example/Page/ExamplePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Example/Page/components/Detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Example/Page/components/Detail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Function/MultipleTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Function/MultipleTabs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Function/Request.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Function/Request.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Function/Test.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Function/Test.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Guide/Guide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Guide/Guide.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Login/components/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login/components/RegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/hooks/useClipboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hooks/useClipboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/hooks/useCrudSchemas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hooks/useCrudSchemas.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/hooks/useTagsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hooks/useTagsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/hooks/useWatermark.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hooks/useWatermark.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/api/sys/sysCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/api/sys/sysCode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsDepotBatchnoInput/WsDepotBatchnoInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsDepotBatchnoInput/WsDepotBatchnoInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsEditForm/WsEditForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsModalForm/WsModalForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsModalForm/WsModalForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsProductInput/WsProductInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsProductInput/WsProductInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/components/WsQuickQueryInput/WsQuickQueryInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/components/WsQuickQueryInput/WsQuickQueryInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoodsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MGoods/MGoodsData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/met/MVendor/MVendorData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/met/MVendor/MVendorData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrderData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/pur/MOrder/MOrderData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/wscore/views/sys/GlAutoCode/GlAutoCodeData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stylelint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/stylelint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uno.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uno.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,46 +189,76 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ant2008&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:ant2008/tiny-fusion-admin.git&quot;,
+    &quot;accountId&quot;: &quot;cc6f7e5b-d30c-4b98-a95b-c86920f58b0a&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/store/modules/user.ts" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/types/router.d.ts" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2Nr3o5szL6xTXtP16jlr6uTvtoD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/stylelint&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin-git",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/wenc.li/Documents/MyPrg/Vue3-prg/tiny-fusion-admin-git/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-WS-241.14494.235" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -118,7 +309,17 @@
       <workItem from="1699501582994" duration="3585000" />
       <workItem from="1700747276574" duration="4697000" />
       <workItem from="1701346479773" duration="32000" />
-      <workItem from="1702029676098" duration="1363000" />
+      <workItem from="1702029676098" duration="2007000" />
+      <workItem from="1702987418219" duration="47000" />
+      <workItem from="1703683897505" duration="3098000" />
+      <workItem from="1706337783913" duration="616000" />
+      <workItem from="1706362976069" duration="4000" />
+      <workItem from="1713014754739" duration="10695000" />
+      <workItem from="1713094503930" duration="403000" />
+      <workItem from="1713095753065" duration="21567000" />
+      <workItem from="1713279598686" duration="9540000" />
+      <workItem from="1713336598002" duration="178000" />
+      <workItem from="1713690186980" duration="328000" />
     </task>
     <task id="LOCAL-00001" summary="init push">
       <created>1682065091219</created>
@@ -188,7 +389,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699506353960</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix same bugs">
+      <option name="closed" value="true" />
+      <created>1702187014619</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702187014619</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +416,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="init push" />
     <MESSAGE value="1.fix validate rule type problem. 2.fix get dict error. 3.finish master detail page model." />
     <MESSAGE value="1.finished the master-slave table page. 2.fixed an issue with input components in vxetable 3.Fixed the compatibility issue of QueryModal boxes in vxetable 4.Implement the field linkage mode in the editing state of the vxetable 5.fixed other minor bugs" />
@@ -216,6 +426,8 @@
     <MESSAGE value="1. add column autocodeTableType 2.add zipcode button." />
     <MESSAGE value="1、fix customer input type components bug. 2、finished autocode child table page. 3、add ws componet types." />
     <MESSAGE value="1、根据新的框架重新进行融合和优化 2、为匹配新的vue-admin-plus的框架，wscore的核心代码也做了修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、根据新的框架重新进行融合和优化 2、为匹配新的vue-admin-plus的框架，wscore的核心代码也做了修改" />
+    <MESSAGE value="fix same bugs" />
+    <MESSAGE value="1、vue-element-plus-admin 调整到版本2.7 2、对其中部分核心代码做完善 3、因为后台调整为DDD模式，前端代码出现不匹配，后续待逐一调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、vue-element-plus-admin 调整到版本2.7 2、对其中部分核心代码做完善 3、因为后台调整为DDD模式，前端代码出现不匹配，后续待逐一调整" />
   </component>
 </project>

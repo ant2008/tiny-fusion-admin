@@ -1,3 +1,5 @@
+import 'vue/jsx'
+
 // 引入windi css
 import '@/plugins/unocss'
 
@@ -39,6 +41,7 @@ import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
+
 // 创建实例
 const setupAll = async () => {
   const app = createApp(App)
@@ -57,7 +60,9 @@ const setupAll = async () => {
 
   //引入vxtable
   app.use(VXETable)
+
   app.mount('#app')
+
 }
 
 setupAll()

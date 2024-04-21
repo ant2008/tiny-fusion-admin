@@ -210,13 +210,14 @@ const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
 // 所有右键菜单组件的元素
 const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
 
-// 右键菜单装填改变的时候
+// 右键菜单状态改变的时候
 const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
   if (visible) {
     for (const v of unref(itemRefs)) {
       const elDropdownMenuRef = v.elDropdownMenuRef
       if (tagItem.fullPath !== v.tagItem.fullPath) {
         elDropdownMenuRef?.handleClose()
+        setSelectTag(tagItem)
       }
     }
   }
@@ -242,6 +243,16 @@ const move = (to: number) => {
     duration: 500
   })
   start()
+}
+
+const canShowIcon = (item: RouteLocationNormalizedLoaded) => {
+  if (
+    (item?.matched?.[1]?.meta?.icon && unref(tagsViewIcon)) ||
+    (item?.meta?.affix && unref(tagsViewIcon) && item?.meta?.icon)
+  ) {
+    return true
+  }
+  return false
 }
 
 onMounted(() => {
@@ -356,13 +367,8 @@ watch(
                   class="h-full flex justify-center items-center whitespace-nowrap pl-15px"
                 >
                   <Icon
-                    v-if="
-                      item?.matched &&
-                      item?.matched[1] &&
-                      item?.matched[1]?.meta?.icon &&
-                      tagsViewIcon
-                    "
-                    :icon="item?.matched[1]?.meta?.icon"
+                    v-if="canShowIcon(item)"
+                    :icon="item?.matched?.[1]?.meta?.icon || item?.meta?.icon"
                     :size="12"
                     class="mr-5px"
                   />
@@ -582,4 +588,3 @@ watch(
   }
 }
 </style>
-@/hooks/web/useTagsView
